@@ -55,11 +55,15 @@ main
   &-white
     background-color: $background
 .h
-  &-10
-    height: 10rem
+  &-20
+    height: 20rem
+  &-22
+    height: 22rem
 .w
   &-full
     width: 100%
+  &-auto
+    width: auto
 
 .btn
   cursor: pointer
@@ -68,6 +72,9 @@ main
   padding-left: 1.25rem
   padding-right: 1.25rem
   border-radius: 0.81rem
+  display: flex
+  justify-content: center
+  align-items: center
 
 .m
   &-1
@@ -94,3 +101,40 @@ main
   &-no-x-main
     margin-left: -4rem
     margin-right: -4rem
+
+.p
+  &-1
+    padding: 0.5rem
+  &-2
+    padding: 2rem
+  &-3
+    padding: 1.5rem
+  &-10
+    padding: 3rem
+
+.absolute
+  position: absolute
+
+.relative
+  position: relative
+
+.bottom
+  &-0
+    bottom: 0
+.-bottom
+  &-1
+    bottom: -1vh
+
+.left
+  &-0
+    left: 0
+  &-1
+    left: 1vw
+  &-2
+    left: 2vw
+  &-5
+    left: 5vw
+
+.right
+  &-10
+    right: 10vw
