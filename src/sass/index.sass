@@ -1,11 +1,27 @@
 @import 'minireset.sass'
 @import 'variables.sass'
 @import 'text.sass'
+@import 'flex.sass'
 
 body 
   font-size:16px
   font-family: 'Poppins', sans-serif
   font-weight:400
+  background-color: $background
+
+header
+  position: fixed
+  width: 100vw
+  padding-top: 1.75rem
+  padding-bottom: 1.75rem
+  padding-left: 1.5rem
+  padding-right: 1.5rem
+  border-bottom: $secondary 2px solid
+
+main
+  padding-top: 7rem
+  padding-left: 4rem
+  padding-right: 4rem
 
 .bg
   &-primary
@@ -21,7 +37,7 @@ body
     &-80
       background-color: rgba($primary, 0.80)
     &-95
-      background-color: rgb
+      background-color: rgba($primary, 0.95)
   &-secondary
     background-color: $secondary
     &-15
@@ -38,3 +54,43 @@ body
       background-color: rgba($secondary, 0.95)
   &-white
     background-color: $background
+.h
+  &-10
+    height: 10rem
+.w
+  &-full
+    width: 100%
+
+.btn
+  cursor: pointer
+  padding-top: 0.70rem
+  padding-bottom: 0.70rem
+  padding-left: 1.25rem
+  padding-right: 1.25rem
+  border-radius: 0.81rem
+
+.m
+  &-1
+    margin: 0.5rem
+  &-2
+    margin: 1rem
+  &-3
+    margin: 1.5rem
+  &-4
+    margin: 2rem
+  &-5
+    margin: 2.5rem
+  &-t
+    &-1
+      margin-top: 0.5rem
+    &-2
+      margin-top: 1rem
+    &-3
+      margin-top: 1.5rem
+    &-4
+      margin-top: 2rem
+    &-5
+      margin-top: 2.5rem
+  &-no-x-main
+    margin-left: -4rem
+    margin-right: -4rem
