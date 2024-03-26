@@ -12,6 +12,7 @@ body
 header
   position: fixed
   width: 100vw
+  z-index: 1
   padding-top: 1.75rem
   padding-bottom: 1.75rem
   padding-left: 1.5rem
@@ -64,6 +65,8 @@ main
     width: 100%
   &-auto
     width: auto
+  &-home-text
+    width: 266px
 
 .btn
   cursor: pointer
@@ -110,7 +113,7 @@ main
   &-3
     padding: 1.5rem
   &-10
-    padding: 3rem
+    padding: 5rem
 
 .absolute
   position: absolute
@@ -138,3 +141,7 @@ main
 .right
   &-10
     right: 10vw
+
+.icon
+  &-home
+    fill: $accent
