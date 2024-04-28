@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
+import Button from '../common/Button';
+
 const Header = () => {
   return (
     <header className="flex justify-between items-center bg-white">
@@ -20,9 +22,7 @@ const Header = () => {
         <NavLink to="/" className="text-nav text-md">
           Se connecter
         </NavLink>
-        <NavLink to="/" className="font-nav font-medium text-md bg-primary btn">
-          S'inscrire
-        </NavLink>
+        <Button asNavLink>S'inscrire</Button>
       </nav>
     </header>
   );
