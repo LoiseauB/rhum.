@@ -13,6 +13,8 @@
     justify-content: space-between
   &-end
     justify-content: flex-end
+  &-evenly
+    justify-content: space-evenly
 
 .items
   &-center
@@ -28,6 +30,9 @@
   &-3
     gap: 1.5rem
   &-4
-    gap: 2rem
+    @include responsive($md)
+      gap: 2rem
   &-5
-    gap: 4rem
+    gap: 1.5rem
+    @include responsive($md)
+      gap: 4rem

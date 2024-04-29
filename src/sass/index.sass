@@ -1,10 +1,11 @@
 @import 'minireset.sass'
 @import 'variables.sass'
+@import 'mixin.sass'
 @import 'text.sass'
 @import 'flex.sass'
 @import 'home/home.sass'
 @import 'common/button.sass'
-
+@import 'layout/header.sass'
 body 
   font-size:16px
   font-family: 'Poppins', sans-serif
@@ -22,10 +23,14 @@ header
   border-bottom: $secondary 2px solid
 
 main
-  padding-top: 7rem
-  padding-left: 4rem
-  padding-right: 4rem
   min-height: 100vh
+  padding-top: 4.5rem
+  padding-left: 2rem
+  padding-right: 2rem
+  @include responsive($md)
+    padding-top: 7rem
+    padding-left: 4rem
+    padding-right: 4rem
 
 .bg
   &-primary
@@ -118,7 +123,10 @@ main
   &-3
     padding: 1.5rem
   &-10
-    padding: 5rem
+    padding: 2.5rem
+    @include responsive($md )
+      padding: 5rem
+    
 
 .absolute
   position: absolute
@@ -131,7 +139,9 @@ main
     bottom: 0
 .-bottom
   &-1
-    bottom: -1vh
+    bottom: -1rem
+  &-3
+    bottom: -3rem
 
 .left
   &-0
@@ -146,3 +156,29 @@ main
 .right
   &-10
     right: 10vw
+
+.visible
+  &-none
+    display: none
+  &-mobile
+    &-flex
+      display: flex
+      @include responsive($md)
+        display: none
+    &-block
+      display: block
+      @include responsive($md)
+        display: none
+  &-desktop
+    &-flex
+      display: none
+      @include responsive($md)
+        display: flex
+
+.overflow
+  &-hidden
+    overflow: hidden
+
+.border
+  border: 1px solid $secondary
+  border-radius: 0.81rem

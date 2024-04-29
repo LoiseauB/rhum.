@@ -1,10 +1,8 @@
-@mixin responsive($breakpoint)
-  @media ( min-width: $breakpoint )
-    @content
-  
 .h
   &-hero
-    min-height: 40vh
+    min-height: 60vh
+    @include responsive($md)
+      min-height: 40vh
 
 .icon
   &-home
@@ -17,8 +15,8 @@
   max-height: 20rem
   
   @media (max-width: $md)
-    right: -5rem
-    top: 0
+    right: -4rem
+    top: -2rem
 
   @include responsive($md)
     left: 5vw

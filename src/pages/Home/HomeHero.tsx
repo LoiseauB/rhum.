@@ -5,7 +5,7 @@ import palmTreeUrl from '../../assets/images/tall-palmtree.png';
 
 const HomeHero = () => {
   return (
-    <section className="relative h-hero p-10 bg-secondary-50 m-no-x-main flex justify-center items-center">
+    <section className="relative overflow-hidden h-hero p-10 bg-secondary-50 m-no-x-main flex justify-center items-center">
       <img src={palmTreeUrl} alt="palm tree" className="palm" />
       <div className="flex cta-hero flex-col gap-5">
         <div>

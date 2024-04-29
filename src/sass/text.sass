@@ -1,16 +1,15 @@
-@font-face 
+@font-face
   font-family: 'Poppins'
   font-weight: 400
   src: url('/fonts/Poppins-Regular.ttf') format('truetype')
-@font-face 
+@font-face
   font-family: 'Quicksand'
-  font-weight:300 700
+  font-weight: 300 700
   src: url('/fonts/Quicksand-VariableFont_wght.ttf') format('truetype')
-@font-face 
+@font-face
   font-family: 'LilitaOne'
   font-weight: 400
   src: url('/fonts/LilitaOne-Regular.ttf') format('truetype')
-
 
 .text
   line-height: 1
@@ -29,15 +28,21 @@
       scale: 0.98
   &-title
     font-family: 'LilitaOne'
-    font-size: 4rem
+    font-size: 3rem
+    @include responsive($md)
+      font-size: 4rem
   &-md
     font-size: 1rem
   &-lg
     font-size: 1.25rem
   &-xl
-    font-size: 2.5rem
+    font-size: 1.5rem
+    @include responsive($md)
+      font-size: 2.5rem
   &-2xl
-    font-size: 3rem
+    font-size: 2rem
+    @include responsive($md)
+      font-size: 3rem
   &-primary
     color: $primary
   &-secondary
