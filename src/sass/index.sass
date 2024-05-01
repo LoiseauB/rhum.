@@ -6,21 +6,12 @@
 @import 'home/home.sass'
 @import 'common/button.sass'
 @import 'layout/header.sass'
+@import 'bottles/bottleCard.sass'
 body 
   font-size:16px
   font-family: 'Poppins', sans-serif
   font-weight:400
   background-color: $background
-
-header
-  position: fixed
-  width: 100vw
-  z-index: 10
-  padding-top: 1.75rem
-  padding-bottom: 1.75rem
-  padding-left: 1.5rem
-  padding-right: 1.5rem
-  border-bottom: $secondary 2px solid
 
 main
   min-height: 100vh
@@ -77,6 +68,8 @@ main
     width: auto
   &-home-text
     width: 266px
+  &-fit
+    width: fit-content
 
 .m
   &-1
@@ -126,6 +119,10 @@ main
     padding: 2.5rem
     @include responsive($md )
       padding: 5rem
+  &y
+    &-3
+      padding-top: 1.5rem
+      padding-bottom: 1.5rem
     
 
 .absolute

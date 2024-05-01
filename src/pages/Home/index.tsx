@@ -4,7 +4,7 @@ import HomeHero from './HomeHero';
 
 const HomePage = () => {
   return (
-    <main>
+    <>
       <HomeHero />
       <section className="p-10 flex justify-center gap-5">
         <div className="flex flex-col items-center w-home-text gap-3">
@@ -26,7 +26,7 @@ const HomePage = () => {
           </p>
         </div>
       </section>
-    </main>
+    </>
   );
 };
 
