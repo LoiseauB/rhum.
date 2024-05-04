@@ -21,7 +21,7 @@ const BottleCard = ({ index, name, country, description }: Props) => (
       <p>{description}</p>
       <div className="flex w-full justify-end gap-2">
         <button>
-          <Star size={20} />
+          <Star size={20} className="favorite" />
         </button>
         <Button asNavLink href={'/bottle/' + index}>
           Voir les détails

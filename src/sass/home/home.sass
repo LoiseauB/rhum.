@@ -3,6 +3,9 @@
     min-height: 60vh
     @include responsive($md)
       min-height: 40vh
+.w
+  &-home-text
+    width: 266px
 
 .icon
   &-home
@@ -12,12 +15,10 @@
   z-index: 0
   position: absolute
   width: auto
-  max-height: 20rem
-  
+  max-height: 20rem 
   @media (max-width: $md)
     right: -4rem
     top: -2rem
-
   @include responsive($md)
     left: 5vw
     bottom: 0

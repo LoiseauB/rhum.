@@ -12,7 +12,7 @@ const HomeHero = () => {
           <h1 className="text-title text-primary">RHUM.</h1>
           <p className="text-accent font-nav text-xl">Le site des passionnés</p>
         </div>
-        <Button asNavLink isBig>
+        <Button asNavLink href="/bottles" isBig>
           Voir les bouteilles
         </Button>
       </div>
