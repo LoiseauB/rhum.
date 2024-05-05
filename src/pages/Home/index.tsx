@@ -1,6 +1,6 @@
 import { BeerBottle, MagnifyingGlass, PlusCircle } from '@phosphor-icons/react';
 
-import HomeHero from './HomeHero';
+import HomeHero from '../../components/Home/HomeHero';
 
 const HomePage = () => {
   return (

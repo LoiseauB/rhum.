@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { Star } from '@phosphor-icons/react';
+import { Heart } from '@phosphor-icons/react';
 
-import Button from '../../components/common/Button';
+import Button from '../common/Button';
 
 type Props = {
   name: string;
@@ -21,7 +21,7 @@ const BottleCard = ({ index, name, country, description }: Props) => (
       <p>{description}</p>
       <div className="flex w-full justify-end gap-2">
         <button>
-          <Star size={20} className="favorite" />
+          <Heart size={20} className="favorite" />
         </button>
         <Button asNavLink href={'/bottle/' + index}>
           Voir les détails

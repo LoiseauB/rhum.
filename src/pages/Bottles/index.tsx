@@ -1,9 +1,8 @@
 import { createContext, Dispatch, SetStateAction, useState } from 'react';
 
+import BottleCard from '../../components/Bottles/BottleCard';
+import SearchBar from '../../components/Bottles/SearchBar';
 import { rumBottles } from '../../config/bottles';
-
-import BottleCard from './BottleCard';
-import SearchBar from './SearchBar';
 export const SearchContext = createContext<Dispatch<SetStateAction<string>>>(
   () => {},
 );

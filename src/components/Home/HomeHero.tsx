@@ -1,4 +1,4 @@
-import Button from '../../components/common/Button';
+import Button from '../common/Button';
 
 import barrelUrl from '../../assets/images/barrel.png';
 import palmTreeUrl from '../../assets/images/tall-palmtree.png';

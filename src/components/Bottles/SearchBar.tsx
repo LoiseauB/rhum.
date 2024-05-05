@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { MagnifyingGlass } from '@phosphor-icons/react';
 
-import { SearchContext } from '.';
+import { SearchContext } from '../../pages/Bottles';
 
 import palmTreeUrl from '../../assets/images/tall-palmtree.png';
 
