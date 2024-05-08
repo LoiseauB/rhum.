@@ -37,7 +37,7 @@ const BottleShow = () => {
         <hr className="my-4" />
         <section>
           <h2 className="text-lg m-b-3">Commentaires</h2>
-          <ul className="w-full flex flex-col items-center">
+          <ul className="w-full flex flex-col items-center py-3">
             {rumComments.map(({ pseudo, comment }, index) => (
               <li
                 key={'comm' + index}
