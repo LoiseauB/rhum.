@@ -1,12 +1,27 @@
+import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Heart } from '@phosphor-icons/react';
+import { Heart, Star } from '@phosphor-icons/react';
 
+import Button from '../../components/common/Button';
 import Note from '../../components/Note';
 import { rumBottles, rumComments } from '../../config/bottles';
 
 const BottleShow = () => {
   const { id } = useParams();
   const index = Number(id);
+  const [userNote, setUserNote] = useState<number>();
+  const [userComment, setUserComment] = useState<string>();
+  const handleNote = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(userNote);
+    setUserNote(undefined);
+  };
+  const handleComment = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(userComment);
+    setUserComment('');
+  };
+
   if (id && !isNaN(index)) {
     const { name, description, country } = rumBottles[index];
     const note = 4;
@@ -31,12 +46,43 @@ const BottleShow = () => {
             <p>{description}</p>
             <div className="flex w-full justify-between gap-2">
               <Note note={note} />
+              <form onSubmit={e => handleNote(e)}>
+                <label>
+                  Noter ce rhum:
+                  <select
+                    name="note"
+                    value={userNote}
+                    onChange={e => setUserNote(Number(e.target.value))}
+                    className="text-lg border p-1 m-2">
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
+                  </select>
+                  <Star size={20} weight="fill" color="gold" />
+                </label>
+                <Button>Confirmer la note</Button>
+              </form>
             </div>
           </div>
         </section>
         <hr className="my-4" />
         <section>
           <h2 className="text-lg m-b-3">Commentaires</h2>
+          <form onSubmit={e => handleComment(e)}>
+            <label>
+              Laisser un commentaire:
+              <br />
+              <textarea
+                name="comment"
+                value={userComment}
+                onChange={e => setUserComment(e.target.value)}
+                className="border comments-input text-md p-1"
+              />
+            </label>
+            <Button>Envoyer</Button>
+          </form>
           <ul className="w-full flex flex-col items-center py-3">
             {rumComments.map(({ pseudo, comment }, index) => (
               <li
