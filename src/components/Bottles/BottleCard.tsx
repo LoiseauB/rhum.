@@ -12,7 +12,7 @@ type Props = {
 
 const BottleCard = ({ index, name, country, category }: Props) => (
   <article className="flex gap-2">
-    <div className="bg-secondary size-bottle" />
+    {/* <div className="bg-secondary size-bottle" /> */}
     <div className="flex flex-col gap-2 size-bottle-text overflow-hidden">
       <NavLink to={'/bottles/' + index} className="text-nav text-primary">
         {name}

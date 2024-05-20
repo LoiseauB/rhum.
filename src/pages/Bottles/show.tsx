@@ -33,10 +33,12 @@ const BottleShow = () => {
     return (
       <>
         <section className="py-3 flex gap-2">
-          <div className="bg-secondary size-bottle" />
+          {/* <div className="bg-secondary size-bottle" /> */}
           <div className="flex flex-col gap-2 size-bottle-text overflow-hidden">
             <div className="flex gap-4">
-              <h1 className="text-nav text-primary">{bottle.name}</h1>
+              <h1 className="text-primary text-xl font-bold font-title">
+                {bottle.name}
+              </h1>
               <button>
                 <Heart size={25} className="favorite" />
               </button>

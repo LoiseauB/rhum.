@@ -27,7 +27,7 @@ const Bottles = () => {
       <SearchContext.Provider value={setSearch}>
         <SearchBar />
         <section className="py-3">
-          <ul>
+          <ul className="px-4">
             {bottles &&
               bottles
                 .filter(({ name }) =>
@@ -35,7 +35,7 @@ const Bottles = () => {
                 )
                 .map(({ id, name, country, categoryId }) => (
                   <>
-                    <li key={'bottle' + id} className="my-2">
+                    <li key={'bottle' + id} className="my-2 px-4">
                       <BottleCard
                         index={id}
                         name={name}
@@ -43,7 +43,7 @@ const Bottles = () => {
                         category={categories[categoryId - 1]}
                       />
                     </li>
-                    {id !== bottles.length - 1 && <hr />}
+                    {id !== bottles.length && <hr />}
                   </>
                 ))}
           </ul>

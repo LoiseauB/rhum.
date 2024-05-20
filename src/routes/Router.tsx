@@ -5,6 +5,7 @@ import Bottles from '../pages/Bottles';
 import BottleShow from '../pages/Bottles/show';
 import Error from '../pages/Error';
 import HomePage from '../pages/Home';
+import Login from '../pages/Login';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         path: '/bottles/:id',
         element: <BottleShow />,
         errorElement: <Error />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
       },
     ],
   },

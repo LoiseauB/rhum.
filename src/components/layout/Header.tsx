@@ -46,7 +46,7 @@ const Header = () => {
         </div>
       </div>
       <nav className="visible-desktop-flex gap-2 items-center">
-        <NavLink to="/" className="text-nav text-md">
+        <NavLink to="/login" className="text-nav text-md">
           Se connecter
         </NavLink>
         <Button asNavLink>S'inscrire</Button>
