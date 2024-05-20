@@ -7,10 +7,10 @@ type Props = {
   name: string;
   index: number;
   country: string;
-  description: string;
+  category: string;
 };
 
-const BottleCard = ({ index, name, country, description }: Props) => (
+const BottleCard = ({ index, name, country, category }: Props) => (
   <article className="flex gap-2">
     <div className="bg-secondary size-bottle" />
     <div className="flex flex-col gap-2 size-bottle-text overflow-hidden">
@@ -18,12 +18,12 @@ const BottleCard = ({ index, name, country, description }: Props) => (
         {name}
       </NavLink>
       <p>Pays d'origine: {country}</p>
-      <p>{description}</p>
+      <p>Catégorie: {category}</p>
       <div className="flex w-full justify-end gap-2">
         <button>
           <Heart size={25} className="favorite" />
         </button>
-        <Button asNavLink href={'/bottle/' + index}>
+        <Button asNavLink href={'/bottles/' + index}>
           Voir les détails
         </Button>
       </div>

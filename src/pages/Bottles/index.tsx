@@ -1,34 +1,51 @@
-import { createContext, Dispatch, SetStateAction, useState } from 'react';
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 
 import BottleCard from '../../components/Bottles/BottleCard';
 import SearchBar from '../../components/Bottles/SearchBar';
-import { rumBottles } from '../../config/bottles';
+import { BottleType } from '../../config/bottles';
+import { categories } from '../../config/categories';
 export const SearchContext = createContext<Dispatch<SetStateAction<string>>>(
   () => {},
 );
 const Bottles = () => {
   const [search, setSearch] = useState('');
+  const [bottles, setBottles] = useState<BottleType[]>();
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_HOST}/bottle`)
+      .then(response => response.json())
+      .then(data => setBottles(data.bottles))
+      .catch(error => console.error(error));
+  });
   return (
     <>
       <SearchContext.Provider value={setSearch}>
         <SearchBar />
         <section className="py-3">
-          <ul className="flex flex-col gap-2">
-            {rumBottles
-              .filter(({ name }) => name.includes(search))
-              .map(({ name, country, description }, index) => (
-                <>
-                  <li key={index}>
-                    <BottleCard
-                      index={index}
-                      name={name}
-                      country={country}
-                      description={description}
-                    />
-                  </li>
-                  {index !== rumBottles.length - 1 && <hr />}
-                </>
-              ))}
+          <ul>
+            {bottles &&
+              bottles
+                .filter(({ name }) =>
+                  name.toLowerCase().includes(search.toLowerCase()),
+                )
+                .map(({ id, name, country, categoryId }) => (
+                  <>
+                    <li key={'bottle' + id} className="my-2">
+                      <BottleCard
+                        index={id}
+                        name={name}
+                        country={country}
+                        category={categories[categoryId - 1]}
+                      />
+                    </li>
+                    {id !== bottles.length - 1 && <hr />}
+                  </>
+                ))}
           </ul>
         </section>
       </SearchContext.Provider>
