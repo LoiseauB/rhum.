@@ -1,11 +1,13 @@
 import { FormEvent, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import Button from '../components/common/Button';
+import Button from '../../components/common/Button';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [pwd, setPwd] = useState<string>('');
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
+  const navigate = useNavigate();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsSubmit(true);
@@ -14,6 +16,7 @@ const Login = () => {
     if (isSubmit) {
       fetch(`${import.meta.env.VITE_API_HOST}/login`, {
         method: 'POST',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -23,11 +26,14 @@ const Login = () => {
         }),
       })
         .then(response => response.json())
-        .then(data => (document.cookie = 'jwt=' + data.token))
-        .catch(error => console.error(error));
+        .then(data => {
+          console.log(data.message);
+          navigate('/profile');
+        })
+        .catch(error => console.error('Erreur:', error));
       setIsSubmit(false);
     }
-  }, [email, isSubmit, pwd]);
+  }, [email, isSubmit, navigate, pwd]);
 
   return (
     <section className="flex justify-center items-center size-full p-10">

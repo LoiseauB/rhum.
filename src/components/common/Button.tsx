@@ -13,13 +13,17 @@ const Button = ({ asNavLink, href, isBig, children }: Props) => {
     return (
       <NavLink
         to={href ? href : '/'}
-        className={classNames({ 'w-full': isBig }, 'btn btn-primary')}>
+        className={classNames(
+          { 'w-full': isBig },
+          'btn btn-primary box-shadow',
+        )}>
         {children}
       </NavLink>
     );
   }
   return (
-    <button className={classNames({ 'w-full': isBig }, 'btn btn-primary')}>
+    <button
+      className={classNames({ 'w-full': isBig }, 'btn btn-primary box-shadow')}>
       {children}
     </button>
   );

@@ -6,6 +6,7 @@ import BottleShow from '../pages/Bottles/show';
 import Error from '../pages/Error';
 import HomePage from '../pages/Home';
 import Login from '../pages/Login';
+import UserProfile from '../pages/User';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/profile',
+        element: <UserProfile />,
       },
     ],
   },
