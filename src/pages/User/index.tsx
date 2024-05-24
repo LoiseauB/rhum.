@@ -1,25 +1,35 @@
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import Button from '../../components/common/Button';
+import { useAppSelector } from '../../store/hook';
 import { userType } from '../../types/user';
 import { userFavorites } from '../../types/userFavorites';
 
 const UserProfile = () => {
+  const { isAuthenticate } = useAppSelector(state => state.auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isAuthenticate) {
+      navigate('/login');
+    }
+  }, [isAuthenticate, navigate]);
   const [user, setUser] = useState<userType>();
   const [favorites, setFavorites] = useState<userFavorites[]>();
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_HOST}/user`, {
-      method: 'GET',
-      credentials: 'include',
-    })
-      .then(response => response.json())
-      .then(data => {
-        setUser(data.user);
-        setFavorites(data.userFavorites);
+    if (isAuthenticate) {
+      fetch(`${import.meta.env.VITE_API_HOST}/user`, {
+        method: 'GET',
+        credentials: 'include',
       })
-      .catch(error => console.error(error));
-  }, []);
+        .then(response => response.json())
+        .then(data => {
+          setUser(data.user);
+          setFavorites(data.userFavorites);
+        })
+        .catch(error => console.error(error));
+    }
+  }, [isAuthenticate]);
 
   return (
     <>

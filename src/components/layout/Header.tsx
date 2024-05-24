@@ -1,12 +1,21 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useCallback, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { CaretDown, CaretUp } from '@phosphor-icons/react';
 import classNames from 'classnames';
 
+import { useAppDispatch, useAppSelector } from '../../store/hook';
 import Button from '../common/Button';
+import { clearUser } from '../../store/features/authSlice';
 
 const Header = () => {
+  const { isAuthenticate, role } = useAppSelector(state => state.auth);
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const handleDisconnect = useCallback(() => {
+    dispatch(clearUser());
+    navigate('/');
+  }, []);
   return (
     <header className="flex justify-between items-center bg-white">
       <div className="flex items-center res-navlink">
@@ -42,14 +51,38 @@ const Header = () => {
           </div>
         </nav>
         <div className="visible-mobile-block">
-          <Button asNavLink>S'inscrire</Button>
+          {isAuthenticate ? (
+            <>
+              <Button asNavLink href="/profile">
+                Mon Profile
+              </Button>
+            </>
+          ) : (
+            <Button asNavLink>S'inscrire</Button>
+          )}
         </div>
       </div>
       <nav className="visible-desktop-flex gap-2 items-center">
-        <NavLink to="/login" className="text-nav text-md">
-          Se connecter
-        </NavLink>
-        <Button asNavLink>S'inscrire</Button>
+        {isAuthenticate ? (
+          <>
+            {role === 'ADMIN' && (
+              <Button asNavLink href="/#TODO">
+                Espace administration
+              </Button>
+            )}
+            <Button asNavLink href="/profile">
+              Mon Profile
+            </Button>
+            <button onClick={handleDisconnect}>Se déconnecter</button>
+          </>
+        ) : (
+          <>
+            <NavLink to="/login" className="text-nav text-md">
+              Se connecter
+            </NavLink>
+            <Button asNavLink>S'inscrire</Button>
+          </>
+        )}
       </nav>
     </header>
   );

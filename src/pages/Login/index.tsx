@@ -1,7 +1,9 @@
 import { FormEvent, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../../components/common/Button';
+import { setUser } from '../../store/features/authSlice';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');
@@ -12,6 +14,7 @@ const Login = () => {
     e.preventDefault();
     setIsSubmit(true);
   };
+  const dispatch = useDispatch();
   useEffect(() => {
     if (isSubmit) {
       fetch(`${import.meta.env.VITE_API_HOST}/login`, {
@@ -27,13 +30,25 @@ const Login = () => {
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data.message);
-          navigate('/profile');
+          if (data.message) {
+            dispatch(
+              setUser({
+                id: data.userId,
+                role: data.role,
+                pseudo: data.pseudo,
+              }),
+            );
+            navigate('/profile');
+          }
+          if (data.error) {
+            setIsSubmit(false);
+            alert('Mauvais email/mot de passe');
+          }
         })
         .catch(error => console.error('Erreur:', error));
       setIsSubmit(false);
     }
-  }, [email, isSubmit, navigate, pwd]);
+  }, [dispatch, email, isSubmit, navigate, pwd]);
 
   return (
     <section className="flex justify-center items-center size-full p-10">
