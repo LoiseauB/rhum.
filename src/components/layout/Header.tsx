@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import Button from '../common/Button';
 import { clearUser } from '../../store/features/authSlice';
+import { clearFavorites } from '../../store/features/favoriteSlice';
 
 const Header = () => {
   const { isAuthenticate, role } = useAppSelector(state => state.auth);
@@ -14,6 +15,7 @@ const Header = () => {
   const navigate = useNavigate();
   const handleDisconnect = useCallback(() => {
     dispatch(clearUser());
+    dispatch(clearFavorites())
     navigate('/');
   }, []);
   return (

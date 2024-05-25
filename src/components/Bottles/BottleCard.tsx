@@ -1,7 +1,15 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Heart } from '@phosphor-icons/react';
 
 import Button from '../common/Button';
+import { addLike, deleteLike } from '../../utils/Likes';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
+import {
+  deleteFavorite,
+  setOneFavorite,
+} from '../../store/features/favoriteSlice';
+import { useEffect, useState } from 'react';
+import LikeButton from '../common/LikeButton';
 
 type Props = {
   name: string;
@@ -20,9 +28,7 @@ const BottleCard = ({ index, name, country, category }: Props) => (
       <p>Pays d'origine: {country}</p>
       <p>Catégorie: {category}</p>
       <div className="flex w-full justify-end gap-2">
-        <button>
-          <Heart size={25} className="favorite" />
-        </button>
+        <LikeButton bottleId={index} />
         <Button asNavLink href={'/bottles/' + index}>
           Voir les détails
         </Button>

@@ -1,5 +1,4 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
 
@@ -14,7 +13,6 @@ const Register = () => {
     e.preventDefault();
     setIsSubmit(true);
   };
-  const dispatch = useDispatch();
   useEffect(() => {
     if (isSubmit && password && password === confirmPwd) {
       fetch(`${import.meta.env.VITE_API_HOST}/register`, {
@@ -42,7 +40,7 @@ const Register = () => {
         .catch(error => console.error('Erreur:', error));
       setIsSubmit(false);
     }
-  }, [dispatch, email, isSubmit, navigate, password, pseudo]);
+  }, [email, isSubmit, navigate, password, pseudo]);
 
   return (
     <section className="flex justify-center items-center size-full p-10">

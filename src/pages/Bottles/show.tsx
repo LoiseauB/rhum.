@@ -4,8 +4,9 @@ import { Heart, Star } from '@phosphor-icons/react';
 
 import Button from '../../components/common/Button';
 import Note from '../../components/Note';
-import { BottleType } from '../../config/bottles';
+import { BottleType } from '../../types/bottles';
 import { categories } from '../../config/categories';
+import LikeButton from '../../components/common/LikeButton';
 
 const BottleShow = () => {
   const { id } = useParams();
@@ -39,9 +40,7 @@ const BottleShow = () => {
               <h1 className="text-primary text-xl font-bold font-title">
                 {bottle.name}
               </h1>
-              <button>
-                <Heart size={25} className="favorite" />
-              </button>
+              <LikeButton bottleId={bottle.id} />
             </div>
             <p>
               Pays d'origine: <strong>{bottle.country}</strong>

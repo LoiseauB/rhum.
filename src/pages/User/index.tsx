@@ -2,20 +2,22 @@ import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import Button from '../../components/common/Button';
-import { useAppSelector } from '../../store/hook';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { userType } from '../../types/user';
+import { setFavorites } from '../../store/features/favoriteSlice';
 import { userFavorites } from '../../types/userFavorites';
 
 const UserProfile = () => {
   const { isAuthenticate } = useAppSelector(state => state.auth);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   useEffect(() => {
     if (!isAuthenticate) {
       navigate('/login');
     }
   }, [isAuthenticate, navigate]);
   const [user, setUser] = useState<userType>();
-  const [favorites, setFavorites] = useState<userFavorites[]>();
+  const [userFavorites, setUserFavorites] = useState<userFavorites[]>();
   useEffect(() => {
     if (isAuthenticate) {
       fetch(`${import.meta.env.VITE_API_HOST}/user`, {
@@ -25,7 +27,12 @@ const UserProfile = () => {
         .then(response => response.json())
         .then(data => {
           setUser(data.user);
-          setFavorites(data.userFavorites);
+          setUserFavorites(data.userFavorites);
+          const favIds: number[] = [];
+          for (const bottle of data.userFavorites) {
+            favIds.push(bottle.id);
+          }
+          dispatch(setFavorites({ favorites: favIds }));
         })
         .catch(error => console.error(error));
     }
@@ -52,9 +59,9 @@ const UserProfile = () => {
       </section>
       <section>
         <h2 className="text-title text-primary text-xl my-4">Mes favoris</h2>
-        {favorites && !!favorites.length && (
+        {userFavorites && !!userFavorites.length && (
           <ul>
-            {favorites.map(({ name, id }, index) => (
+            {userFavorites.map(({ name, id }, index) => (
               <li key={'fav' + index}>
                 <NavLink to={`/bottles/${id}`} className="text-nav">
                   • {name}

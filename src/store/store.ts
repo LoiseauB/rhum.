@@ -3,18 +3,23 @@ import { configureStore } from '@reduxjs/toolkit';
 import authSlice from './features/authSlice';
 import sessionStorage from 'redux-persist/es/storage/session';
 import { persistReducer, persistStore } from 'redux-persist';
+import favoriteSlice from './features/favoriteSlice';
 
-const persistConfig = {
-  key: 'root',
-  storage: sessionStorage,
-}
-const persistedReducer = persistReducer(persistConfig, authSlice)
+const authReducer = persistReducer(
+  { key: 'user', storage: sessionStorage },
+  authSlice,
+);
+const favoritesReducer = persistReducer(
+  { key: 'favorites', storage: sessionStorage },
+  favoriteSlice,
+);
 const store = configureStore({
   reducer: {
-    auth: persistedReducer,
+    auth: authReducer,
+    favorites: favoritesReducer,
   },
 });
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
