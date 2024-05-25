@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { CaretDown, CaretUp } from '@phosphor-icons/react';
 import classNames from 'classnames';
@@ -11,13 +11,24 @@ import { clearFavorites } from '../../store/features/favoriteSlice';
 const Header = () => {
   const { isAuthenticate, role } = useAppSelector(state => state.auth);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLogout, setIsLogout] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const handleDisconnect = useCallback(() => {
-    dispatch(clearUser());
-    dispatch(clearFavorites())
-    navigate('/');
-  }, []);
+  useEffect(() => {
+    if (isAuthenticate && isLogout) {
+      fetch(`${import.meta.env.VITE_API_HOST}/auth/logout`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then(() => {
+        dispatch(clearUser());
+        dispatch(clearFavorites());
+        navigate('/');
+      });
+    }
+  }, [isAuthenticate, isLogout]);
   return (
     <header className="flex justify-between items-center bg-white">
       <div className="flex items-center res-navlink">
@@ -75,7 +86,7 @@ const Header = () => {
             <Button asNavLink href="/profile">
               Mon Profile
             </Button>
-            <button onClick={handleDisconnect}>Se déconnecter</button>
+            <button onClick={() => setIsLogout(true)}>Se déconnecter</button>
           </>
         ) : (
           <>

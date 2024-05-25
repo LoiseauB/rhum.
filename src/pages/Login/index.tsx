@@ -17,7 +17,7 @@ const Login = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (isSubmit) {
-      fetch(`${import.meta.env.VITE_API_HOST}/login`, {
+      fetch(`${import.meta.env.VITE_API_HOST}/auth/login`, {
         method: 'POST',
         credentials: 'include',
         headers: {
