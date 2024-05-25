@@ -7,6 +7,7 @@ import Error from '../pages/Error';
 import HomePage from '../pages/Home';
 import Login from '../pages/Login';
 import UserProfile from '../pages/User';
+import Register from '../pages/Register';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       {
         path: '/bottles',
         element: <Bottles />,
+        errorElement: <Error />,
       },
       {
         path: '/bottles/:id',
@@ -31,8 +33,13 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
+        path: '/register',
+        element: <Register />
+      },
+      {
         path: '/profile',
         element: <UserProfile />,
+        errorElement: <Error />,
       },
     ],
   },

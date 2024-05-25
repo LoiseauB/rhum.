@@ -80,7 +80,9 @@ const Header = () => {
             <NavLink to="/login" className="text-nav text-md">
               Se connecter
             </NavLink>
-            <Button asNavLink>S'inscrire</Button>
+            <Button asNavLink href="/register">
+              S'inscrire
+            </Button>
           </>
         )}
       </nav>
