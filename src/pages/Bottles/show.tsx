@@ -1,35 +1,106 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Heart, Star } from '@phosphor-icons/react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Star, X } from '@phosphor-icons/react';
 
 import Button from '../../components/common/Button';
 import Note from '../../components/Note';
 import { BottleType } from '../../types/bottles';
 import { categories } from '../../config/categories';
 import LikeButton from '../../components/common/LikeButton';
+import { useAppSelector } from '../../store/hook';
 
 const BottleShow = () => {
   const { id } = useParams();
   const index = Number(id);
+  const { isAuthenticate } = useAppSelector(state => state.auth);
   const [bottle, setBottle] = useState<BottleType>();
-  const [userNote, setUserNote] = useState<number>();
+  const [userRate, setUserRate] = useState<number>();
+  const [dbRate, setDbRate] = useState<number>();
   const [userComment, setUserComment] = useState<string>();
+  const [rateSubmit, setRateSubmit] = useState(false);
+  const [rateDelete, setRateDelete] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_HOST}/bottle/${index}`)
       .then(response => response.json())
       .then(data => setBottle(data.bottle))
       .catch(error => console.error(error));
   }, [index]);
-  const handleNote = (e: FormEvent<HTMLFormElement>) => {
+
+  useEffect(() => {
+    if (isAuthenticate && index) {
+      fetch(`${import.meta.env.VITE_API_HOST}/rating/${index}`, {
+        method: 'GET',
+        credentials: 'include',
+      })
+        .then(response => response.json())
+        .then(data => setDbRate(data.rate.rating))
+        .catch(error => console.error(error));
+    }
+  }, [isAuthenticate, index]);
+
+  useEffect(() => {
+    if (isAuthenticate && index && rateDelete) {
+      fetch(`${import.meta.env.VITE_API_HOST}/rating/${index}`, {
+        method: 'DELETE',
+        credentials: 'include',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          navigate(0);
+        })
+        .catch(error => console.error(error));
+    }
+  }, [isAuthenticate, index, rateDelete]);
+
+  useEffect(() => {
+    if (isAuthenticate && rateSubmit && userRate) {
+      fetch(`${import.meta.env.VITE_API_HOST}/rating`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ bottleId: index, rating: userRate }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          navigate(0);
+        })
+        .catch(error => console.error(error));
+      setRateSubmit(false);
+    }
+  }, [isAuthenticate, rateSubmit, userRate]);
+
+  const handleSubmitRate = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(userNote);
-    setUserNote(1);
+    if (isAuthenticate) {
+      console.log(userRate);
+      setRateSubmit(true);
+      return;
+    }
+    navigate('/login');
   };
+  const handleDeleteRate = () => {
+    if (isAuthenticate) {
+      setRateDelete(true);
+      return;
+    }
+    navigate('/login');
+  };
+
   const handleComment = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(userComment);
-    setUserComment('');
+    if (isAuthenticate) {
+      console.log(userComment);
+      setUserComment('');
+      return;
+    }
+    navigate('/login');
   };
+
   if (bottle)
     return (
       <>
@@ -51,24 +122,35 @@ const BottleShow = () => {
             <p>{bottle.description}</p>
             <div className="flex w-full justify-between gap-2">
               <Note note={bottle.avgRating} />
-              <form onSubmit={e => handleNote(e)}>
-                <label>
-                  Noter ce rhum:
-                  <select
-                    name="note"
-                    value={userNote}
-                    onChange={e => setUserNote(Number(e.target.value))}
-                    className="text-lg border p-1 m-2">
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                    <option value={4}>4</option>
-                    <option value={5}>5</option>
-                  </select>
+              {dbRate ? (
+                <div className="flex items-center gap-1">
+                  <p>Votre note: {dbRate} </p>
                   <Star size={20} weight="fill" color="gold" />
-                </label>
-                <Button>Confirmer la note</Button>
-              </form>
+                  <button onClick={() => handleDeleteRate()}>
+                    <X size={16} fill="red" weight="fill" />
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={e => handleSubmitRate(e)}>
+                  <label>
+                    Noter ce rhum:
+                    <select
+                      name="note"
+                      value={userRate}
+                      onChange={e => setUserRate(Number(e.target.value))}
+                      className="text-lg border p-1 m-2">
+                      <option value={''}>notes</option>
+                      <option value={'1'}>1</option>
+                      <option value={'2'}>2</option>
+                      <option value={'3'}>3</option>
+                      <option value={'4'}>4</option>
+                      <option value={'5'}>5</option>
+                    </select>
+                    <Star size={20} weight="fill" color="gold" />
+                  </label>
+                  <Button>Confirmer la note</Button>
+                </form>
+              )}
             </div>
           </div>
         </section>
@@ -82,6 +164,7 @@ const BottleShow = () => {
               Laisser un commentaire:
               <br />
               <textarea
+                required
                 name="comment"
                 value={userComment}
                 onChange={e => setUserComment(e.target.value)}
@@ -91,7 +174,7 @@ const BottleShow = () => {
             <Button>Envoyer</Button>
           </form>
           <ul className="w-full flex flex-col items-center py-3">
-            {bottle.comments.map(({ id, comment, user, userId }) => (
+            {bottle.comments.map(({ id, comment, user }) => (
               <li
                 key={'comm' + id}
                 className="my-2 border p-2 comments-w bg-secondary-15">

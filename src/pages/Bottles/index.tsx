@@ -10,14 +10,12 @@ import BottleCard from '../../components/Bottles/BottleCard';
 import SearchBar from '../../components/Bottles/SearchBar';
 import { BottleType } from '../../types/bottles';
 import { categories } from '../../config/categories';
-import { useAppSelector } from '../../store/hook';
 export const SearchContext = createContext<Dispatch<SetStateAction<string>>>(
   () => {},
 );
 const Bottles = () => {
   const [search, setSearch] = useState('');
   const [bottles, setBottles] = useState<BottleType[]>();
-  const { favorites } = useAppSelector(state => state.favorites);
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_HOST}/bottle`)
       .then(response => response.json())
@@ -43,7 +41,6 @@ const Bottles = () => {
                         name={name}
                         country={country}
                         category={categories[categoryId - 1]}
-                        isFav={favorites.includes(id)}
                       />
                     </li>
                     {id !== bottles.length && <hr />}
