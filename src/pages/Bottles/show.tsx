@@ -17,6 +17,7 @@ const BottleShow = () => {
   const [userRate, setUserRate] = useState<number>();
   const [dbRate, setDbRate] = useState<number>();
   const [userComment, setUserComment] = useState<string>();
+  const [commentSubmit, setCommentSubmit] = useState(false);
   const [rateSubmit, setRateSubmit] = useState(false);
   const [rateDelete, setRateDelete] = useState(false);
   const navigate = useNavigate();
@@ -74,6 +75,25 @@ const BottleShow = () => {
     }
   }, [isAuthenticate, rateSubmit, userRate]);
 
+  useEffect(() => {
+    if (isAuthenticate && userComment && commentSubmit) {
+      fetch(`${import.meta.env.VITE_API_HOST}/comment`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ bottleId: index, comment: userComment }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          navigate(0);
+        })
+        .catch(error => console.error(error));
+    }
+  }, [isAuthenticate, userComment, commentSubmit]);
+
   const handleSubmitRate = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isAuthenticate) {
@@ -95,7 +115,7 @@ const BottleShow = () => {
     e.preventDefault();
     if (isAuthenticate) {
       console.log(userComment);
-      setUserComment('');
+      setCommentSubmit(true);
       return;
     }
     navigate('/login');

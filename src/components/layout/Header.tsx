@@ -51,15 +51,17 @@ const Header = () => {
             <div
               className={classNames(
                 { 'visible-none': !isOpen },
-                'absolute -bottom-3 bg-white p-1 border text-nav',
+                'absolute -bottom-5 bg-white  border',
               )}>
-              <NavLink to="/" className="m-5">
-                Accueil
-              </NavLink>
-              <br />
-              <NavLink to="/bottles" className="m-5">
-                Les bouteilles
-              </NavLink>
+              <nav className='flex flex-col px-4 py-1'>
+                <NavLink to="/" className="text-nav">
+                  Accueil
+                </NavLink>
+                <br />
+                <NavLink to="/bottles" className="text-nav">
+                  Les bouteilles
+                </NavLink>
+              </nav>
             </div>
           </div>
         </nav>
