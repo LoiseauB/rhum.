@@ -21,6 +21,7 @@ const BottleShow = () => {
   const [rateSubmit, setRateSubmit] = useState(false);
   const [rateDelete, setRateDelete] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_HOST}/bottle/${index}`)
       .then(response => response.json())

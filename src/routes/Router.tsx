@@ -8,6 +8,7 @@ import HomePage from '../pages/Home';
 import Login from '../pages/Login';
 import UserProfile from '../pages/User';
 import Register from '../pages/Register';
+import EditUserForm from '../pages/User/edit';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <UserProfile />,
+        errorElement: <Error />,
+      },
+      {
+        path: '/profile/edit',
+        element: <EditUserForm />,
         errorElement: <Error />,
       },
     ],

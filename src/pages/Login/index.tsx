@@ -36,6 +36,7 @@ const Login = () => {
                 id: data.userId,
                 role: data.role,
                 pseudo: data.pseudo,
+                email: data.email
               }),
             );
             navigate('/profile');

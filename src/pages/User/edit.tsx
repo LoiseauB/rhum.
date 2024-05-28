@@ -1,22 +1,32 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
+import { clearUser, setUser } from '../../store/features/authSlice';
+import { clearFavorites } from '../../store/features/favoriteSlice';
 
-const Register = () => {
-  const [email, setEmail] = useState<string>();
+const EditUserForm = () => {
+  const { email: userEmail, pseudo: userPseudo } = useAppSelector(
+    state => state.auth,
+  );
+  const dispatch = useAppDispatch();
+  const [email, setEmail] = useState<string>(userEmail!);
   const [password, setPassword] = useState<string>();
-  const [pseudo, setPseudo] = useState<string>();
+  const [pseudo, setPseudo] = useState<string>(userPseudo!);
   const [confirmPwd, setConfirmPwd] = useState<string>();
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const navigate = useNavigate();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if (password && password !== confirmPwd) {
+      return alert('Erreur dans la confirmation du mot de passe');
+    }
     setIsSubmit(true);
   };
   useEffect(() => {
-    if (isSubmit && password && password === confirmPwd) {
-      fetch(`${import.meta.env.VITE_API_HOST}/register`, {
-        method: 'POST',
+    if (isSubmit) {
+      fetch(`${import.meta.env.VITE_API_HOST}/user`, {
+        method: 'PUT',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
@@ -29,8 +39,22 @@ const Register = () => {
       })
         .then(response => response.json())
         .then(data => {
-          if (data.message) {
-            navigate('/login');
+          if (data.id && !password) {
+            dispatch(setUser({ ...data }));
+            navigate('/profile');
+          }
+          if (data.id && password) {
+            fetch(`${import.meta.env.VITE_API_HOST}/auth/logout`, {
+              method: 'POST',
+              credentials: 'include',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }).then(() => {
+              dispatch(clearUser());
+              dispatch(clearFavorites());
+              navigate('/');
+            });
           }
           if (data.error) {
             setIsSubmit(false);
@@ -48,7 +72,7 @@ const Register = () => {
         <form
           onSubmit={e => handleSubmit(e)}
           className="p-3 border flex flex-col gap-2 bg-secondary-50">
-          <h2 className="text-xl">Inscription</h2>
+          <h2 className="text-xl">Modifier son profil</h2>
           <label className="flex flex-col">
             Pseudo:
             <input
@@ -56,7 +80,6 @@ const Register = () => {
               onChange={e => setPseudo(e.target.value)}
               value={pseudo}
               className="border p-1 text-lg bg-white"
-              required
             />
           </label>
           <label className="flex flex-col">
@@ -66,7 +89,6 @@ const Register = () => {
               onChange={e => setEmail(e.target.value)}
               value={email}
               className="border p-1 text-lg bg-white"
-              required
             />
           </label>
           <label className="flex flex-col">
@@ -76,14 +98,15 @@ const Register = () => {
               onChange={e => setPassword(e.target.value)}
               value={password}
               className="border p-1 text-lg bg-white"
-              required
             />
           </label>
           <label className="flex flex-col">
             <div className="flex gap-2">
               <span>Confirmez le mot de passe:</span>
               {confirmPwd && (
-                <>{confirmPwd !== password ? <span>❌</span> : <span>✅</span>}</>
+                <>
+                  {confirmPwd !== password ? <span>❌</span> : <span>✅</span>}
+                </>
               )}
             </div>
             <input
@@ -91,20 +114,18 @@ const Register = () => {
               onChange={e => setConfirmPwd(e.target.value)}
               value={confirmPwd}
               className="border p-1 text-lg bg-white"
-              required
             />
           </label>
-          <div className="flex justify-end">
-            <Button>Créer mon compte</Button>
+          <div className="flex justify-end items-center gap-2">
+            <NavLink to={'/profile'} className="text-nav text-md">
+              Annuler
+            </NavLink>
+            <Button>Enregistrer</Button>
           </div>
         </form>
-        <p className='m-t-4'>
-          Vous avez déjà un compte :{' '}
-          <NavLink to={'/login'} className="text-nav text-md text-primary">se connecter</NavLink>
-        </p>
       </div>
     </section>
   );
 };
 
-export default Register;
+export default EditUserForm;
