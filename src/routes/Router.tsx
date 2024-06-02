@@ -9,6 +9,7 @@ import Login from '../pages/Login';
 import UserProfile from '../pages/User';
 import Register from '../pages/Register';
 import EditUserForm from '../pages/User/edit';
+import AdminDashboard from '../pages/Admin';
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,11 @@ const router = createBrowserRouter([
         element: <EditUserForm />,
         errorElement: <Error />,
       },
+      {
+        path: '/admin',
+        element: <AdminDashboard/>,
+        errorElement: <Error />
+      }
     ],
   },
 ]);

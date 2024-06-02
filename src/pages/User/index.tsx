@@ -4,8 +4,9 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { userType } from '../../types/user';
-import { setFavorites } from '../../store/features/favoriteSlice';
+import { clearFavorites, setFavorites } from '../../store/features/favoriteSlice';
 import { userFavorites } from '../../types/userFavorites';
+import { clearUser } from '../../store/features/authSlice';
 
 const UserProfile = () => {
   const { isAuthenticate } = useAppSelector(state => state.auth);
@@ -18,6 +19,7 @@ const UserProfile = () => {
   }, [isAuthenticate, navigate]);
   const [user, setUser] = useState<userType>();
   const [userFavorites, setUserFavorites] = useState<userFavorites[]>();
+  const [deleteUser, setDeleteUser] = useState(false);
   useEffect(() => {
     if (isAuthenticate) {
       fetch(`${import.meta.env.VITE_API_HOST}/user`, {
@@ -38,6 +40,31 @@ const UserProfile = () => {
     }
   }, [isAuthenticate]);
 
+  useEffect(() => {
+    if (isAuthenticate && deleteUser) {
+      fetch(`${import.meta.env.VITE_API_HOST}/user`, {
+        method: 'DELETE',
+        credentials: 'include',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+          dispatch(clearFavorites())
+          dispatch(clearUser())
+        })
+        .catch(error => console.error(error));
+    }
+  }, [isAuthenticate, deleteUser]);
+
+  const handleDelete = () => {
+    const confirmed = confirm('Vous êtes sur le point de supprimer votre compte. Êtes-vous sûr ?');
+    if (confirmed) {
+      setDeleteUser(true);
+      return;
+    }
+    navigate(0);
+  }
+
   return (
     <>
       <section className="my-4 border box-shadow p-3 flex justify-center">
@@ -53,7 +80,11 @@ const UserProfile = () => {
             <Button asNavLink href="/profile/edit">
               Éditer
             </Button>
-            <button className="text-secondary">supprimer mon compte</button>
+            <button
+              onClick={() => handleDelete()}
+              className="text-danger">
+              supprimer mon compte
+            </button>
           </div>
         </div>
       </section>

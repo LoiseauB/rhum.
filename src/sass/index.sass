@@ -60,6 +60,8 @@ button
   &-white
     background-color: $background
 .h
+  &-0
+    height: 0
   &-20
     height: 20rem
   &-22
@@ -206,6 +208,8 @@ button
       display: none
       @include responsive($md)
         display: flex
+  &-table
+    display: table
 
 .overflow
   &-hidden
@@ -224,3 +228,6 @@ button
 
 .box-shadow
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)
+
+td
+  padding-inline: 6px

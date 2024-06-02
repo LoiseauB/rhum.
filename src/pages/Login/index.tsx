@@ -4,19 +4,21 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 import Button from '../../components/common/Button';
 import { setUser } from '../../store/features/authSlice';
+import { useAppSelector } from '../../store/hook';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [pwd, setPwd] = useState<string>('');
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { isAuthenticate } = useAppSelector(state => state.auth);
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsSubmit(true);
   };
   const dispatch = useDispatch();
   useEffect(() => {
-    if (isSubmit) {
+    if (isSubmit && email && pwd) {
       fetch(`${import.meta.env.VITE_API_HOST}/auth/login`, {
         method: 'POST',
         credentials: 'include',
@@ -30,26 +32,32 @@ const Login = () => {
       })
         .then(response => response.json())
         .then(data => {
-          if (data.message) {
+          console.log(data);
+          if (data.userId) {
             dispatch(
               setUser({
                 id: data.userId,
                 role: data.role,
                 pseudo: data.pseudo,
-                email: data.email
+                email: data.email,
               }),
             );
-            navigate('/profile');
           }
           if (data.error) {
             setIsSubmit(false);
-            alert('Mauvais email/mot de passe');
+           return alert('Mauvais email/mot de passe');
           }
         })
         .catch(error => console.error('Erreur:', error));
       setIsSubmit(false);
     }
   }, [dispatch, email, isSubmit, navigate, pwd]);
+
+  useEffect(() => {
+    if(isAuthenticate) {
+      navigate('/profile')
+    }
+  },[isAuthenticate])
 
   return (
     <section className="flex justify-center items-center size-full p-10">
@@ -82,9 +90,11 @@ const Login = () => {
             <Button>Se connecter</Button>
           </div>
         </form>
-        <p className='m-t-4'>
+        <p className="m-t-4">
           Vous n'avez pas de compte :{' '}
-          <NavLink to={'/register'} className="text-nav text-md text-primary">s'inscrire</NavLink>
+          <NavLink to={'/register'} className="text-nav text-md text-primary">
+            s'inscrire
+          </NavLink>
         </p>
       </div>
     </section>

@@ -25,6 +25,7 @@ const Header = () => {
       }).then(() => {
         dispatch(clearUser());
         dispatch(clearFavorites());
+        setIsLogout(false)
         navigate('/');
       });
     }
@@ -81,7 +82,7 @@ const Header = () => {
         {isAuthenticate ? (
           <>
             {role === 'ADMIN' && (
-              <Button asNavLink href="/#TODO">
+              <Button asNavLink href="/admin">
                 Espace administration
               </Button>
             )}
