@@ -11,6 +11,8 @@ import Register from '../pages/Register';
 import EditUserForm from '../pages/User/edit';
 import AdminDashboard from '../pages/Admin';
 import Legals from '../pages/Legals';
+import Contact from '../pages/Contact';
+import SitePlan from '../pages/SitePlan';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +59,14 @@ const router = createBrowserRouter([
       {
         path: '/legals',
         element: <Legals />
+      },
+      {
+        path: '/contact',
+        element: <Contact />
+      },
+      {
+        path: '/plan',
+        element: <SitePlan />
       },
     ],
   },
