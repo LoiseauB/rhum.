@@ -25,7 +25,7 @@ const Header = () => {
       }).then(() => {
         dispatch(clearUser());
         dispatch(clearFavorites());
-        setIsLogout(false)
+        setIsLogout(false);
         navigate('/');
       });
     }
@@ -52,15 +52,21 @@ const Header = () => {
             <div
               className={classNames(
                 { 'visible-none': !isOpen },
-                'absolute -bottom-5 bg-white  border',
+                'absolute -bottom-5 bg-white box-shadow border',
               )}>
-              <nav className='flex flex-col px-4 py-1'>
+              <nav
+                onClick={() => setIsOpen(false)}
+                className="flex flex-col px-4 py-1">
                 <NavLink to="/" className="text-nav">
                   Accueil
                 </NavLink>
                 <br />
                 <NavLink to="/bottles" className="text-nav">
                   Les bouteilles
+                </NavLink>
+                <br />
+                <NavLink to="/login" className="text-nav">
+                  Se connecter
                 </NavLink>
               </nav>
             </div>
@@ -74,7 +80,9 @@ const Header = () => {
               </Button>
             </>
           ) : (
-            <Button asNavLink>S'inscrire</Button>
+            <Button asNavLink href="/register">
+              S'inscrire
+            </Button>
           )}
         </div>
       </div>

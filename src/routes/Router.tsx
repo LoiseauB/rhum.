@@ -10,6 +10,7 @@ import UserProfile from '../pages/User';
 import Register from '../pages/Register';
 import EditUserForm from '../pages/User/edit';
 import AdminDashboard from '../pages/Admin';
+import Legals from '../pages/Legals';
 
 const router = createBrowserRouter([
   {
@@ -52,7 +53,11 @@ const router = createBrowserRouter([
         path: '/admin',
         element: <AdminDashboard/>,
         errorElement: <Error />
-      }
+      },
+      {
+        path: '/legals',
+        element: <Legals />
+      },
     ],
   },
 ]);
