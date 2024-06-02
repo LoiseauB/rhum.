@@ -1,8 +1,10 @@
 import { BeerBottle, MagnifyingGlass, PlusCircle } from '@phosphor-icons/react';
 
 import HomeHero from '../../components/Home/HomeHero';
+import useTitle from '../../hooks/useTitle';
 
 const HomePage = () => {
+  useTitle('Accueil')
   return (
     <>
       <HomeHero />

@@ -12,8 +12,10 @@ import {
 import { userType } from '../../types/user';
 import classNames from 'classnames';
 import { CommentType } from '../../types/comments';
+import useTitle from '../../hooks/useTitle';
 
 const AdminDashboard = () => {
+  useTitle('Espace Admin')
   const { isAuthenticate, role } = useAppSelector(state => state.auth);
   const navigate = useNavigate();
   const [isUser, setIsUser] = useState(false);

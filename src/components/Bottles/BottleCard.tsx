@@ -22,14 +22,14 @@ const BottleCard = ({ index, name, country, category }: Props) => (
   <article className="flex gap-2">
     {/* <div className="bg-secondary size-bottle" /> */}
     <div className="flex flex-col gap-2 size-bottle-text overflow-hidden">
-      <NavLink to={'/bottles/' + index} className="text-nav text-primary">
+      <NavLink to={'/bottles/' + index + '?name=' + name} className="text-nav text-primary">
         {name}
       </NavLink>
       <p>Pays d'origine: {country}</p>
       <p>Catégorie: {category}</p>
       <div className="flex w-full justify-end gap-2">
         <LikeButton bottleId={index} />
-        <Button asNavLink href={'/bottles/' + index}>
+        <Button asNavLink href={'/bottles/' + index + '?name=' + name}>
           Voir les détails
         </Button>
       </div>

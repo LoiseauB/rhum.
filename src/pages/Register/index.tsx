@@ -1,8 +1,10 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
+import useTitle from '../../hooks/useTitle';
 
 const Register = () => {
+  useTitle("S'inscrire");
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [pseudo, setPseudo] = useState<string>();
@@ -83,7 +85,9 @@ const Register = () => {
             <div className="flex gap-2">
               <span>Confirmez le mot de passe:</span>
               {confirmPwd && (
-                <>{confirmPwd !== password ? <span>❌</span> : <span>✅</span>}</>
+                <>
+                  {confirmPwd !== password ? <span>❌</span> : <span>✅</span>}
+                </>
               )}
             </div>
             <input
@@ -98,9 +102,11 @@ const Register = () => {
             <Button>Créer mon compte</Button>
           </div>
         </form>
-        <p className='m-t-4'>
+        <p className="m-t-4">
           Vous avez déjà un compte :{' '}
-          <NavLink to={'/login'} className="text-nav text-md text-primary">se connecter</NavLink>
+          <NavLink to={'/login'} className="text-nav text-md text-primary">
+            se connecter
+          </NavLink>
         </p>
       </div>
     </section>

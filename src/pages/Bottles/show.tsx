@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { Star, X } from '@phosphor-icons/react';
 
 import Button from '../../components/common/Button';
@@ -8,9 +8,11 @@ import { BottleType } from '../../types/bottles';
 import { categories } from '../../config/categories';
 import LikeButton from '../../components/common/LikeButton';
 import { useAppSelector } from '../../store/hook';
+import useTitle from '../../hooks/useTitle';
 
 const BottleShow = () => {
   const { id } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams()
   const index = Number(id);
   const { isAuthenticate } = useAppSelector(state => state.auth);
   const [bottle, setBottle] = useState<BottleType>();
@@ -21,6 +23,7 @@ const BottleShow = () => {
   const [rateSubmit, setRateSubmit] = useState(false);
   const [rateDelete, setRateDelete] = useState(false);
   const navigate = useNavigate();
+  useTitle(searchParams.get('name') ? searchParams.get('name')! : 'Bouteille ' + id)
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_HOST}/bottle/${index}`)

@@ -4,8 +4,10 @@ import Button from '../../components/common/Button';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { clearUser, setUser } from '../../store/features/authSlice';
 import { clearFavorites } from '../../store/features/favoriteSlice';
+import useTitle from '../../hooks/useTitle';
 
 const EditUserForm = () => {
+  useTitle('Modifier son compte')
   const { email: userEmail, pseudo: userPseudo } = useAppSelector(
     state => state.auth,
   );

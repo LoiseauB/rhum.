@@ -5,8 +5,10 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
 import { setUser } from '../../store/features/authSlice';
 import { useAppSelector } from '../../store/hook';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
+  useTitle('Se connecter');
   const [email, setEmail] = useState<string>('');
   const [pwd, setPwd] = useState<string>('');
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
@@ -45,7 +47,7 @@ const Login = () => {
           }
           if (data.error) {
             setIsSubmit(false);
-           return alert('Mauvais email/mot de passe');
+            return alert('Mauvais email/mot de passe');
           }
         })
         .catch(error => console.error('Erreur:', error));
@@ -54,10 +56,10 @@ const Login = () => {
   }, [dispatch, email, isSubmit, navigate, pwd]);
 
   useEffect(() => {
-    if(isAuthenticate) {
-      navigate('/profile')
+    if (isAuthenticate) {
+      navigate('/profile');
     }
-  },[isAuthenticate])
+  }, [isAuthenticate]);
 
   return (
     <section className="flex justify-center items-center size-full p-10">

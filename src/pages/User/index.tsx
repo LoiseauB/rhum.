@@ -7,8 +7,10 @@ import { userType } from '../../types/user';
 import { clearFavorites, setFavorites } from '../../store/features/favoriteSlice';
 import { userFavorites } from '../../types/userFavorites';
 import { clearUser } from '../../store/features/authSlice';
+import useTitle from '../../hooks/useTitle';
 
 const UserProfile = () => {
+  useTitle('Mon compte')
   const { isAuthenticate } = useAppSelector(state => state.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
