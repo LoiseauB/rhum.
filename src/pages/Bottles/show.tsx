@@ -12,7 +12,7 @@ import useTitle from '../../hooks/useTitle';
 
 const BottleShow = () => {
   const { id } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchParams] = useSearchParams()
   const index = Number(id);
   const { isAuthenticate } = useAppSelector(state => state.auth);
   const [bottle, setBottle] = useState<BottleType>();
