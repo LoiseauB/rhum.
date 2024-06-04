@@ -4,13 +4,16 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { userType } from '../../types/user';
-import { clearFavorites, setFavorites } from '../../store/features/favoriteSlice';
+import {
+  clearFavorites,
+  setFavorites,
+} from '../../store/features/favoriteSlice';
 import { userFavorites } from '../../types/userFavorites';
 import { clearUser } from '../../store/features/authSlice';
 import useTitle from '../../hooks/useTitle';
 
 const UserProfile = () => {
-  useTitle('Mon compte')
+  useTitle('Mon compte');
   const { isAuthenticate } = useAppSelector(state => state.auth);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -26,7 +29,7 @@ const UserProfile = () => {
     if (isAuthenticate) {
       fetch(`${import.meta.env.VITE_API_HOST}/user`, {
         method: 'GET',
-        credentials: 'include',
+        credentials: 'same-origin',
       })
         .then(response => response.json())
         .then(data => {
@@ -46,26 +49,28 @@ const UserProfile = () => {
     if (isAuthenticate && deleteUser) {
       fetch(`${import.meta.env.VITE_API_HOST}/user`, {
         method: 'DELETE',
-        credentials: 'include',
+        credentials: 'same-origin',
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data)
-          dispatch(clearFavorites())
-          dispatch(clearUser())
+          console.log(data);
+          dispatch(clearFavorites());
+          dispatch(clearUser());
         })
         .catch(error => console.error(error));
     }
   }, [isAuthenticate, deleteUser]);
 
   const handleDelete = () => {
-    const confirmed = confirm('Vous êtes sur le point de supprimer votre compte. Êtes-vous sûr ?');
+    const confirmed = confirm(
+      'Vous êtes sur le point de supprimer votre compte. Êtes-vous sûr ?',
+    );
     if (confirmed) {
       setDeleteUser(true);
       return;
     }
     navigate(0);
-  }
+  };
 
   return (
     <>
@@ -82,9 +87,7 @@ const UserProfile = () => {
             <Button asNavLink href="/profile/edit">
               Éditer
             </Button>
-            <button
-              onClick={() => handleDelete()}
-              className="text-danger">
+            <button onClick={() => handleDelete()} className="text-danger">
               supprimer mon compte
             </button>
           </div>

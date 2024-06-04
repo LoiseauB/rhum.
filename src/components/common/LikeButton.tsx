@@ -19,7 +19,7 @@ const LikeButton = ({ bottleId }: { bottleId: number }) => {
       if (isFav) {
         fetch(`${import.meta.env.VITE_API_HOST}/favorite`, {
           method: 'DELETE',
-          credentials: 'include',
+          credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -34,7 +34,7 @@ const LikeButton = ({ bottleId }: { bottleId: number }) => {
       }
       fetch(`${import.meta.env.VITE_API_HOST}/favorite`, {
         method: 'POST',
-        credentials: 'include',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
         },

@@ -7,7 +7,7 @@ import { clearFavorites } from '../../store/features/favoriteSlice';
 import useTitle from '../../hooks/useTitle';
 
 const EditUserForm = () => {
-  useTitle('Modifier son compte')
+  useTitle('Modifier son compte');
   const { email: userEmail, pseudo: userPseudo } = useAppSelector(
     state => state.auth,
   );
@@ -29,7 +29,7 @@ const EditUserForm = () => {
     if (isSubmit) {
       fetch(`${import.meta.env.VITE_API_HOST}/user`, {
         method: 'PUT',
-        credentials: 'include',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -48,7 +48,7 @@ const EditUserForm = () => {
           if (data.id && password) {
             fetch(`${import.meta.env.VITE_API_HOST}/auth/logout`, {
               method: 'POST',
-              credentials: 'include',
+              credentials: 'same-origin',
               headers: {
                 'Content-Type': 'application/json',
               },

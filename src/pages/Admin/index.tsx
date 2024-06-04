@@ -15,7 +15,7 @@ import { CommentType } from '../../types/comments';
 import useTitle from '../../hooks/useTitle';
 
 const AdminDashboard = () => {
-  useTitle('Espace Admin')
+  useTitle('Espace Admin');
   const { isAuthenticate, role } = useAppSelector(state => state.auth);
   const navigate = useNavigate();
   const [isUser, setIsUser] = useState(false);
@@ -35,7 +35,7 @@ const AdminDashboard = () => {
     if (isAuthenticate && role === 'ADMIN' && !users) {
       fetch(`${import.meta.env.VITE_API_HOST}/admin/users`, {
         method: 'GET',
-        credentials: 'include',
+        credentials: 'same-origin',
       })
         .then(response => response.json())
         .then(data => {
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
     if (isAuthenticate && role === 'ADMIN' && !comments) {
       fetch(`${import.meta.env.VITE_API_HOST}/admin/comments`, {
         method: 'GET',
-        credentials: 'include',
+        credentials: 'same-origin',
       })
         .then(response => response.json())
         .then(data => {
@@ -65,7 +65,7 @@ const AdminDashboard = () => {
         `${import.meta.env.VITE_API_HOST}/admin/users`,
         {
           method: 'DELETE',
-          credentials: 'include',
+          credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -87,7 +87,7 @@ const AdminDashboard = () => {
         `${import.meta.env.VITE_API_HOST}/admin/users`,
         {
           method: 'PUT',
-          credentials: 'include',
+          credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -116,7 +116,7 @@ const AdminDashboard = () => {
         `${import.meta.env.VITE_API_HOST}/admin/comments`,
         {
           method: 'DELETE',
-          credentials: 'include',
+          credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json',
           },

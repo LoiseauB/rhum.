@@ -18,7 +18,7 @@ const Header = () => {
     if (isAuthenticate && isLogout) {
       fetch(`${import.meta.env.VITE_API_HOST}/auth/logout`, {
         method: 'POST',
-        credentials: 'include',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
         },

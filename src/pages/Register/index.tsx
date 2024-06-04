@@ -19,7 +19,7 @@ const Register = () => {
     if (isSubmit && password && password === confirmPwd) {
       fetch(`${import.meta.env.VITE_API_HOST}/register`, {
         method: 'POST',
-        credentials: 'include',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
         },

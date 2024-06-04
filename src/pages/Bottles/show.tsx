@@ -12,7 +12,7 @@ import useTitle from '../../hooks/useTitle';
 
 const BottleShow = () => {
   const { id } = useParams();
-  const [searchParams] = useSearchParams()
+  const [searchParams] = useSearchParams();
   const index = Number(id);
   const { isAuthenticate } = useAppSelector(state => state.auth);
   const [bottle, setBottle] = useState<BottleType>();
@@ -23,7 +23,9 @@ const BottleShow = () => {
   const [rateSubmit, setRateSubmit] = useState(false);
   const [rateDelete, setRateDelete] = useState(false);
   const navigate = useNavigate();
-  useTitle(searchParams.get('name') ? searchParams.get('name')! : 'Bouteille ' + id)
+  useTitle(
+    searchParams.get('name') ? searchParams.get('name')! : 'Bouteille ' + id,
+  );
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_HOST}/bottle/${index}`)
@@ -36,7 +38,7 @@ const BottleShow = () => {
     if (isAuthenticate && index) {
       fetch(`${import.meta.env.VITE_API_HOST}/rating/${index}`, {
         method: 'GET',
-        credentials: 'include',
+        credentials: 'same-origin',
       })
         .then(response => response.json())
         .then(data => setDbRate(data.rate.rating))
@@ -48,7 +50,7 @@ const BottleShow = () => {
     if (isAuthenticate && index && rateDelete) {
       fetch(`${import.meta.env.VITE_API_HOST}/rating/${index}`, {
         method: 'DELETE',
-        credentials: 'include',
+        credentials: 'same-origin',
       })
         .then(response => response.json())
         .then(data => {
@@ -63,7 +65,7 @@ const BottleShow = () => {
     if (isAuthenticate && rateSubmit && userRate) {
       fetch(`${import.meta.env.VITE_API_HOST}/rating`, {
         method: 'POST',
-        credentials: 'include',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -83,7 +85,7 @@ const BottleShow = () => {
     if (isAuthenticate && userComment && commentSubmit) {
       fetch(`${import.meta.env.VITE_API_HOST}/comment`, {
         method: 'POST',
-        credentials: 'include',
+        credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
         },
