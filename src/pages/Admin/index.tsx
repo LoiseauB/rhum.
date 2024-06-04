@@ -35,7 +35,7 @@ const AdminDashboard = () => {
     if (isAuthenticate && role === 'ADMIN' && !users) {
       fetch(`${import.meta.env.VITE_API_HOST}/admin/users`, {
         method: 'GET',
-        credentials: 'same-origin',
+        credentials: 'include',
       })
         .then(response => response.json())
         .then(data => {
@@ -49,7 +49,7 @@ const AdminDashboard = () => {
     if (isAuthenticate && role === 'ADMIN' && !comments) {
       fetch(`${import.meta.env.VITE_API_HOST}/admin/comments`, {
         method: 'GET',
-        credentials: 'same-origin',
+        credentials: 'include',
       })
         .then(response => response.json())
         .then(data => {
@@ -65,7 +65,7 @@ const AdminDashboard = () => {
         `${import.meta.env.VITE_API_HOST}/admin/users`,
         {
           method: 'DELETE',
-          credentials: 'same-origin',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -87,7 +87,7 @@ const AdminDashboard = () => {
         `${import.meta.env.VITE_API_HOST}/admin/users`,
         {
           method: 'PUT',
-          credentials: 'same-origin',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -116,7 +116,7 @@ const AdminDashboard = () => {
         `${import.meta.env.VITE_API_HOST}/admin/comments`,
         {
           method: 'DELETE',
-          credentials: 'same-origin',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
           },

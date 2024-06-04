@@ -29,7 +29,7 @@ const UserProfile = () => {
     if (isAuthenticate) {
       fetch(`${import.meta.env.VITE_API_HOST}/user`, {
         method: 'GET',
-        credentials: 'same-origin',
+        credentials: 'include',
       })
         .then(response => response.json())
         .then(data => {
@@ -49,7 +49,7 @@ const UserProfile = () => {
     if (isAuthenticate && deleteUser) {
       fetch(`${import.meta.env.VITE_API_HOST}/user`, {
         method: 'DELETE',
-        credentials: 'same-origin',
+        credentials: 'include',
       })
         .then(response => response.json())
         .then(data => {

@@ -23,7 +23,7 @@ const Login = () => {
     if (isSubmit && email && pwd) {
       fetch(`${import.meta.env.VITE_API_HOST}/auth/login`, {
         method: 'POST',
-        credentials: 'same-origin',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },

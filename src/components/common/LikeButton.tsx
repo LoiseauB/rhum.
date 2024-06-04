@@ -19,13 +19,15 @@ const LikeButton = ({ bottleId }: { bottleId: number }) => {
       if (isFav) {
         fetch(`${import.meta.env.VITE_API_HOST}/favorite`, {
           method: 'DELETE',
-          credentials: 'same-origin',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ bottleId }),
-        }).then(response => response.json())
-          .then(data => { console.log(data)
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
             dispatch(deleteFavorite({ toDelete: bottleId }));
             setIsClicked(false);
           })
@@ -34,13 +36,15 @@ const LikeButton = ({ bottleId }: { bottleId: number }) => {
       }
       fetch(`${import.meta.env.VITE_API_HOST}/favorite`, {
         method: 'POST',
-        credentials: 'same-origin',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ bottleId }),
-      }).then(response => response.json())
-        .then(data => { console.log(data)
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
           dispatch(setOneFavorite({ newFav: bottleId }));
           setIsClicked(false);
         })

@@ -29,7 +29,7 @@ const EditUserForm = () => {
     if (isSubmit) {
       fetch(`${import.meta.env.VITE_API_HOST}/user`, {
         method: 'PUT',
-        credentials: 'same-origin',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -48,7 +48,7 @@ const EditUserForm = () => {
           if (data.id && password) {
             fetch(`${import.meta.env.VITE_API_HOST}/auth/logout`, {
               method: 'POST',
-              credentials: 'same-origin',
+              credentials: 'include',
               headers: {
                 'Content-Type': 'application/json',
               },

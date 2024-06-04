@@ -38,7 +38,7 @@ const BottleShow = () => {
     if (isAuthenticate && index) {
       fetch(`${import.meta.env.VITE_API_HOST}/rating/${index}`, {
         method: 'GET',
-        credentials: 'same-origin',
+        credentials: 'include',
       })
         .then(response => response.json())
         .then(data => setDbRate(data.rate.rating))
@@ -50,7 +50,7 @@ const BottleShow = () => {
     if (isAuthenticate && index && rateDelete) {
       fetch(`${import.meta.env.VITE_API_HOST}/rating/${index}`, {
         method: 'DELETE',
-        credentials: 'same-origin',
+        credentials: 'include',
       })
         .then(response => response.json())
         .then(data => {
@@ -65,7 +65,7 @@ const BottleShow = () => {
     if (isAuthenticate && rateSubmit && userRate) {
       fetch(`${import.meta.env.VITE_API_HOST}/rating`, {
         method: 'POST',
-        credentials: 'same-origin',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -85,7 +85,7 @@ const BottleShow = () => {
     if (isAuthenticate && userComment && commentSubmit) {
       fetch(`${import.meta.env.VITE_API_HOST}/comment`, {
         method: 'POST',
-        credentials: 'same-origin',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
