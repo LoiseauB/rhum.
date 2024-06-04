@@ -32,7 +32,7 @@ const Bottles = () => {
       .then(response => response.json())
       .then(data => setBottles(data.bottles))
       .catch(error => console.error(error));
-  });
+  },[]);
   return (
     <>
       <SearchContext.Provider value={setSearch}>
