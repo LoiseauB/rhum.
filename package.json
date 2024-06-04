@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "set HTTPS=true && tsc && vite build",
+    "build": "tsc && vite build",
     "lint": "eslint . --fix && prettier --write ./src/**/*.css",
     "preview": "vite preview"
   },
