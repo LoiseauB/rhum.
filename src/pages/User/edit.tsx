@@ -17,6 +17,7 @@ const EditUserForm = () => {
   const [pseudo, setPseudo] = useState<string>(userPseudo!);
   const [confirmPwd, setConfirmPwd] = useState<string>();
   const [isSubmit, setIsSubmit] = useState<boolean>(false);
+  const [avatar, setAvatar] = useState<File | null>(null);
   const navigate = useNavigate();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -27,17 +28,16 @@ const EditUserForm = () => {
   };
   useEffect(() => {
     if (isSubmit) {
+      const formData = new FormData();
+      formData.append('email', email);
+      password && formData.append('password', password);
+      formData.append('pseudo', pseudo);
+      avatar && formData.append('avatar', avatar);
+
       fetch(`${import.meta.env.VITE_API_HOST}/user`, {
         method: 'PUT',
         credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password,
-          pseudo,
-        }),
+        body: formData,
       })
         .then(response => response.json())
         .then(data => {
@@ -45,7 +45,7 @@ const EditUserForm = () => {
             dispatch(setUser({ ...data }));
             navigate('/profile');
           }
-          if (data.id && password) {
+          if (data.id && password || email !== userEmail) {
             fetch(`${import.meta.env.VITE_API_HOST}/auth/logout`, {
               method: 'POST',
               credentials: 'include',
@@ -116,6 +116,14 @@ const EditUserForm = () => {
               onChange={e => setConfirmPwd(e.target.value)}
               value={confirmPwd}
               className="border p-1 text-lg bg-white"
+            />
+          </label>
+          <label className="flex flex-col">
+            Avatar (jpeg ou png):
+            <input
+              type="file"
+              onChange={e => setAvatar(e.target.files!.item(0))}
+              className="border p-1 bg-white"
             />
           </label>
           <div className="flex justify-end items-center gap-2">

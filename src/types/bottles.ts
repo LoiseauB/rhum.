@@ -11,6 +11,7 @@ export type BottleType = {
     userId: number;
     user: {
       pseudo: string;
+      avatar?: string;
     };
   }[];
 };

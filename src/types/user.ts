@@ -3,4 +3,5 @@ export type userType = {
   email: string;
   pseudo: string;
   role: string;
+  avatar?: string;
 };

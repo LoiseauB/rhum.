@@ -30,7 +30,10 @@ const BottleShow = () => {
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_HOST}/bottle/${index}`)
       .then(response => response.json())
-      .then(data => setBottle(data.bottle))
+      .then(data => {
+        console.log(data);
+        setBottle(data.bottle);
+      })
       .catch(error => console.error(error));
   }, [index]);
 
@@ -203,9 +206,24 @@ const BottleShow = () => {
             {bottle.comments.map(({ id, comment, user }) => (
               <li
                 key={'comm' + id}
-                className="my-2 border p-2 comments-w bg-secondary-15">
-                <p className="font-bold text-secondary m-b-1">{user.pseudo}</p>
-                <p>{comment}</p>
+                className="my-2 border p-2 comments-w bg-secondary-15 box-shadow">
+                <div className='flex items-center'>
+                  {user.avatar && (
+                    <div className="avatar-sm overflow-hidden mx-3 rounded-full box-shadow">
+                      <img
+                        src={`${import.meta.env.VITE_API_HOST.replace('/api', '')}/${user.avatar}`}
+                        alt={`${user.pseudo} avatar`}
+                        className="avatar-img"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <p className="font-bold text-secondary m-b-1">
+                      {user.pseudo}
+                    </p>
+                    <p>{comment}</p>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
