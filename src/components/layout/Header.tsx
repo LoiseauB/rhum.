@@ -65,9 +65,15 @@ const Header = () => {
                   Les bouteilles
                 </NavLink>
                 <br />
-                <NavLink to="/login" className="text-nav">
-                  Se connecter
-                </NavLink>
+                {isAuthenticate ? (
+                  <button onClick={() => setIsLogout(true)}>
+                    Se déconnecter
+                  </button>
+                ) : (
+                  <NavLink to="/login" className="text-nav">
+                    Se connecter
+                  </NavLink>
+                )}
               </nav>
             </div>
           </div>
