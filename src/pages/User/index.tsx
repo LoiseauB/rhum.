@@ -77,7 +77,7 @@ const UserProfile = () => {
     <>
       <section className="my-4 border box-shadow p-3 flex justify-center items-center">
         {user?.avatar ? (
-          <div className="avatar-sm overflow-hidden mx-3 rounded-full box-shadow">
+          <div className="avatar overflow-hidden mx-3 rounded-full box-shadow">
             <img
               src={`${import.meta.env.VITE_API_HOST.replace('/api', '')}/${user.avatar}`}
               alt={`${user.pseudo} avatar`}
@@ -85,7 +85,7 @@ const UserProfile = () => {
             />
           </div>
         ) : (
-          <div className="avatar-sm overflow-hidden mx-3 rounded-full box-shadow">
+          <div className="avatar overflow-hidden mx-3 rounded-full box-shadow">
             <img
               src={`${import.meta.env.VITE_API_HOST.replace('/api', '')}/uploads/default.png`}
               alt={`${user?.pseudo} avatar`}
