@@ -207,7 +207,7 @@ const BottleShow = () => {
               <li
                 key={'comm' + id}
                 className="my-2 border p-2 comments-w bg-secondary-15 box-shadow">
-                <div className='flex items-center'>
+                <div className='inline'>
                   {user.avatar ? (
                     <div className="avatar-sm overflow-hidden mx-3 rounded-full box-shadow">
                       <img
