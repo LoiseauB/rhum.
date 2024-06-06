@@ -219,7 +219,7 @@ const BottleShow = () => {
                   ): (
                     <div className="avatar-sm overflow-hidden mx-3 rounded-full box-shadow">
                       <img
-                        src={`${import.meta.env.VITE_API_HOST.replace('/api', '')}/default.png`}
+                        src={`${import.meta.env.VITE_API_HOST.replace('/api', '')}/uploads/default.png`}
                         alt={`${user.pseudo} avatar`}
                         className="avatar-img"
                       />
