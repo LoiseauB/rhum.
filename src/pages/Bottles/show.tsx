@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { Star, X } from '@phosphor-icons/react';
+import { Pencil, Star, X } from '@phosphor-icons/react';
 
 import Button from '../../components/common/Button';
 import Note from '../../components/Note';
@@ -155,8 +155,9 @@ const BottleShow = () => {
                 <div className="flex items-center gap-1">
                   <p>Votre note: {dbRate} </p>
                   <Star size={20} weight="fill" color="gold" />
-                  <button onClick={() => handleDeleteRate()}>
-                    <X size={16} fill="red" weight="fill" />
+                  <button className='flex items-center border py-1 box-shadow' onClick={() => handleDeleteRate()}>
+                    <Pencil size={20} />
+                     changer la note
                   </button>
                 </div>
               ) : (
