@@ -208,10 +208,18 @@ const BottleShow = () => {
                 key={'comm' + id}
                 className="my-2 border p-2 comments-w bg-secondary-15 box-shadow">
                 <div className='flex items-center'>
-                  {user.avatar && (
+                  {user.avatar ? (
                     <div className="avatar-sm overflow-hidden mx-3 rounded-full box-shadow">
                       <img
                         src={`${import.meta.env.VITE_API_HOST.replace('/api', '')}/${user.avatar}`}
+                        alt={`${user.pseudo} avatar`}
+                        className="avatar-img"
+                      />
+                    </div>
+                  ): (
+                    <div className="avatar-sm overflow-hidden mx-3 rounded-full box-shadow">
+                      <img
+                        src={`${import.meta.env.VITE_API_HOST.replace('/api', '')}/default.png`}
                         alt={`${user.pseudo} avatar`}
                         className="avatar-img"
                       />
