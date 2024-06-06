@@ -33,7 +33,7 @@ const UserProfile = () => {
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data)
+          console.log(data);
           setUser(data.user);
           setUserFavorites(data.userFavorites);
           const favIds: number[] = [];
@@ -76,9 +76,23 @@ const UserProfile = () => {
   return (
     <>
       <section className="my-4 border box-shadow p-3 flex justify-center items-center">
-        {user?.avatar && <div className='avatar overflow-hidden mx-3 rounded-full'>
-          <img src={`${import.meta.env.VITE_API_HOST.replace('/api', '')}/${user.avatar}`} alt={`${user.pseudo} avatar`} className='avatar-img' />
-        </div>}
+        {user?.avatar ? (
+          <div className="avatar-sm overflow-hidden mx-3 rounded-full box-shadow">
+            <img
+              src={`${import.meta.env.VITE_API_HOST.replace('/api', '')}/${user.avatar}`}
+              alt={`${user.pseudo} avatar`}
+              className="avatar-img"
+            />
+          </div>
+        ) : (
+          <div className="avatar-sm overflow-hidden mx-3 rounded-full box-shadow">
+            <img
+              src={`${import.meta.env.VITE_API_HOST.replace('/api', '')}/default.png`}
+              alt={`${user?.pseudo} avatar`}
+              className="avatar-img"
+            />
+          </div>
+        )}
         <div>
           <h1 className="text-title text-primary text-xl my-4">Mon profile</h1>
           <p>
