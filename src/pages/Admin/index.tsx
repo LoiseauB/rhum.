@@ -8,11 +8,13 @@ import {
   EnvelopeSimple,
   PencilSimple,
   Trash,
+  UserSwitch,
 } from '@phosphor-icons/react';
 import { userType } from '../../types/user';
 import classNames from 'classnames';
 import { CommentType } from '../../types/comments';
 import useTitle from '../../hooks/useTitle';
+import EditAdminModal from '../User/editAdminModal';
 
 const AdminDashboard = () => {
   useTitle('Espace Admin');
@@ -22,6 +24,8 @@ const AdminDashboard = () => {
   const [users, setUsers] = useState<userType[]>();
   const [isComment, setIsComment] = useState(false);
   const [comments, setComments] = useState<CommentType[]>();
+  const [isModal, setIsModal] = useState(false);
+  const [modalUser, setModalUser] = useState<userType | undefined>();
   useEffect(() => {
     if (!isAuthenticate) {
       navigate('/login');
@@ -134,6 +138,7 @@ const AdminDashboard = () => {
 
   return (
     <>
+      {isModal && modalUser && <EditAdminModal onClose={() => setIsModal(false)} user={modalUser}  />}
       <h1 className="text-xl m-b-4">Espace administrateur</h1>
       <section className="m-b-4">
         <Button isBig onClick={() => setIsUser(prev => !prev)}>
@@ -173,6 +178,14 @@ const AdminDashboard = () => {
                       <div className="flex w-full justify-center gap-2">
                         <button
                           onClick={() => handleEditUser(id, role)}
+                          className="flex items-center gap-2">
+                          <UserSwitch size={18} />
+                        </button>
+                        <button
+                          onClick={() => {
+                            setModalUser({id, email, pseudo, role})
+                            setIsModal(true);
+                          }}
                           className="flex items-center gap-2">
                           <PencilSimple size={18} />
                         </button>
