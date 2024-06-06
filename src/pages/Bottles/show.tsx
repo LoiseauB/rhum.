@@ -225,11 +225,11 @@ const BottleShow = () => {
                       />
                     </div>
                   )}
-                  <div>
+                  <div className='w-80'>
                     <p className="font-bold text-secondary m-b-1">
                       {user.pseudo}
                     </p>
-                    <p className='w-80'>{comment}</p>
+                    <p>{comment}</p>
                   </div>
                 </div>
               </li>
