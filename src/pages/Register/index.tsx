@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
 import useTitle from '../../hooks/useTitle';
+import useValidateFile from '../../hooks/useValidateFile';
 
 const Register = () => {
   useTitle("S'inscrire");
@@ -14,7 +15,9 @@ const Register = () => {
   const navigate = useNavigate();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmit(true);
+    if (useValidateFile(avatar)) {
+      setIsSubmit(true);
+    }
   };
   useEffect(() => {
     const formData = new FormData();
@@ -104,6 +107,7 @@ const Register = () => {
             Avatar (jpeg ou png):
             <input
               type="file"
+              accept=".jpg, .png"
               onChange={e => setAvatar(e.target.files!.item(0))}
               className="border p-1 bg-white"
             />

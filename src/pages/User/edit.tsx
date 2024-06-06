@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { clearUser, setUser } from '../../store/features/authSlice';
 import { clearFavorites } from '../../store/features/favoriteSlice';
 import useTitle from '../../hooks/useTitle';
+import useValidateFile from '../../hooks/useValidateFile';
 
 const EditUserForm = () => {
   useTitle('Modifier son compte');
@@ -24,7 +25,9 @@ const EditUserForm = () => {
     if (password && password !== confirmPwd) {
       return alert('Erreur dans la confirmation du mot de passe');
     }
-    setIsSubmit(true);
+    if (useValidateFile(avatar)) {
+      setIsSubmit(true);
+    }
   };
   useEffect(() => {
     if (isSubmit) {
@@ -122,6 +125,7 @@ const EditUserForm = () => {
             Avatar (jpeg ou png):
             <input
               type="file"
+              accept=".jpg, .png"
               onChange={e => setAvatar(e.target.files!.item(0))}
               className="border p-1 bg-white"
             />
