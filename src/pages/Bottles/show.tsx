@@ -229,7 +229,7 @@ const BottleShow = () => {
                     <p className="font-bold text-secondary m-b-1">
                       {user.pseudo}
                     </p>
-                    <p>{comment}</p>
+                    <p className='w-80'>{comment}</p>
                   </div>
                 </div>
               </li>
