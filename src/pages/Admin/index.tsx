@@ -14,7 +14,7 @@ import { userType } from '../../types/user';
 import classNames from 'classnames';
 import { CommentType } from '../../types/comments';
 import useTitle from '../../hooks/useTitle';
-import EditAdminModal from '../User/editAdminModal';
+import EditAdminModal from '../User/EditAdminModal';
 
 const AdminDashboard = () => {
   useTitle('Espace Admin');
