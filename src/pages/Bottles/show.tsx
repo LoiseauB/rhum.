@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { Pencil, Star, X } from '@phosphor-icons/react';
+import { Pencil, Star } from '@phosphor-icons/react';
 
 import Button from '../../components/common/Button';
 import Note from '../../components/Note';
