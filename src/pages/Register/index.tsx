@@ -21,11 +21,11 @@ const Register = () => {
   };
   useEffect(() => {
     const formData = new FormData();
-    if (email && password && pseudo && avatar) {
+    if (email && password && pseudo) {
       formData.append('email', email);
       formData.append('password', password);
       formData.append('pseudo', pseudo);
-      formData.append('avatar', avatar);
+      avatar && formData.append('avatar', avatar);
     }
     if (isSubmit && password && password === confirmPwd) {
       fetch(`${import.meta.env.VITE_API_HOST}/register`, {
