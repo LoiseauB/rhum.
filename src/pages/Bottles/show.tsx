@@ -133,6 +133,7 @@ const BottleShow = () => {
             <img
               src={bottlesPict[Math.floor(Math.random() * bottlesPict.length)]}
               className="size-bottle-img"
+              alt={bottle.name}
             />
           </div>
           <div className="flex flex-col gap-2 size-bottle-text overflow-hidden">
