@@ -55,7 +55,7 @@ const BottleShow = () => {
         credentials: 'include',
       })
         .then(response => response.json())
-        .then(data => {
+        .then(_data => {
           navigate(0);
         })
         .catch(error => console.error(error));

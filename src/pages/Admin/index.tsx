@@ -77,6 +77,7 @@ const AdminDashboard = () => {
         },
       );
       const result = await response.json();
+      console.log(result);
       alert('Utilisateur supprimé');
       navigate(0);
     } catch (error) {
@@ -101,6 +102,7 @@ const AdminDashboard = () => {
         },
       );
       const result = await response.json();
+      console.log(result);
       alert("Rôle de l'utilisateur modifié");
       navigate(0);
     } catch (error) {
@@ -126,6 +128,7 @@ const AdminDashboard = () => {
         },
       );
       const result = await response.json();
+      console.log(result);
       alert('Commentaire supprimé');
       navigate(0);
     } catch (error) {
@@ -135,7 +138,9 @@ const AdminDashboard = () => {
 
   return (
     <>
-      {isModal && modalUser && <EditAdminModal onClose={() => setIsModal(false)} user={modalUser}  />}
+      {isModal && modalUser && (
+        <EditAdminModal onClose={() => setIsModal(false)} user={modalUser} />
+      )}
       <h1 className="text-xl m-b-4">Espace administrateur</h1>
       <section className="m-b-4">
         <Button isBig onClick={() => setIsUser(prev => !prev)}>
@@ -180,7 +185,7 @@ const AdminDashboard = () => {
                         </button>
                         <button
                           onClick={() => {
-                            setModalUser({id, email, pseudo, role})
+                            setModalUser({ id, email, pseudo, role });
                             setIsModal(true);
                           }}
                           className="flex items-center gap-2">
