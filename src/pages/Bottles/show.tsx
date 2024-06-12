@@ -9,6 +9,7 @@ import { categories } from '../../config/categories';
 import LikeButton from '../../components/common/LikeButton';
 import { useAppSelector } from '../../store/hook';
 import useTitle from '../../hooks/useTitle';
+import { bottlesPict } from '../../config/bottlesPict';
 
 const BottleShow = () => {
   const { id } = useParams();
@@ -128,7 +129,12 @@ const BottleShow = () => {
     return (
       <>
         <section className="py-3 flex gap-2">
-          {/* <div className="bg-secondary size-bottle" /> */}
+          <div className="bg-secondary size-bottle">
+            <img
+              src={bottlesPict[Math.floor(Math.random() * bottlesPict.length)]}
+              className="size-bottle-img"
+            />
+          </div>
           <div className="flex flex-col gap-2 size-bottle-text overflow-hidden">
             <div className="flex gap-4">
               <h1 className="text-primary text-xl font-bold font-title">
@@ -149,9 +155,11 @@ const BottleShow = () => {
                 <div className="flex items-center gap-1">
                   <p>Votre note: {dbRate} </p>
                   <Star size={20} weight="fill" color="gold" />
-                  <button className='flex items-center border py-1 box-shadow' onClick={() => handleDeleteRate()}>
+                  <button
+                    className="flex items-center border py-1 box-shadow"
+                    onClick={() => handleDeleteRate()}>
                     <Pencil size={20} />
-                     changer la note
+                    changer la note
                   </button>
                 </div>
               ) : (
@@ -202,7 +210,7 @@ const BottleShow = () => {
               <li
                 key={'comm' + id}
                 className="my-2 border p-2 comments-w bg-secondary-15 box-shadow">
-                <div className='inline'>
+                <div className="inline">
                   {user.avatar ? (
                     <div className="avatar-sm overflow-hidden mx-3 rounded-full box-shadow">
                       <img
@@ -211,7 +219,7 @@ const BottleShow = () => {
                         className="avatar-img"
                       />
                     </div>
-                  ): (
+                  ) : (
                     <div className="avatar-sm overflow-hidden mx-3 rounded-full box-shadow">
                       <img
                         src={`${import.meta.env.VITE_API_HOST.replace('/api', '')}/uploads/default.png`}
@@ -220,7 +228,7 @@ const BottleShow = () => {
                       />
                     </div>
                   )}
-                  <div className='w-80'>
+                  <div className="w-80">
                     <p className="font-bold text-secondary m-b-1">
                       {user.pseudo}
                     </p>

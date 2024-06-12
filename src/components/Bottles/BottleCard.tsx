@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 import Button from '../common/Button';
 import LikeButton from '../common/LikeButton';
+import { bottlesPict } from '../../config/bottlesPict';
 
 type Props = {
   name: string;
@@ -12,7 +13,12 @@ type Props = {
 
 const BottleCard = ({ index, name, country, category }: Props) => (
   <article className="flex gap-2">
-    {/* <div className="bg-secondary size-bottle" /> */}
+    <div className="bg-secondary size-bottle">
+      <img
+        src={bottlesPict[Math.floor(Math.random() * bottlesPict.length)]}
+        className="size-bottle-img"
+      />
+    </div>
     <div className="flex flex-col gap-2 size-bottle-text overflow-hidden">
       <NavLink
         to={'/bottles/' + index + '?name=' + name}
