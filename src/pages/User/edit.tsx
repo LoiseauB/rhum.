@@ -48,7 +48,7 @@ const EditUserForm = () => {
             dispatch(setUser({ ...data }));
             navigate('/profile');
           }
-          if (data.id && password || email !== userEmail) {
+          if ((data.id && password) || email !== userEmail) {
             fetch(`${import.meta.env.VITE_API_HOST}/auth/logout`, {
               method: 'POST',
               credentials: 'include',
@@ -58,7 +58,7 @@ const EditUserForm = () => {
             }).then(() => {
               dispatch(clearUser());
               dispatch(clearFavorites());
-              navigate('/');
+              navigate('/login');
             });
           }
           if (data.error) {
@@ -122,7 +122,7 @@ const EditUserForm = () => {
             />
           </label>
           <label className="flex flex-col">
-            Avatar (jpeg ou png):
+            Avatar :<p className="text-sm">{'(jpeg ou png, < 3 Mb)'}</p>
             <input
               type="file"
               accept=".jpg, .png"

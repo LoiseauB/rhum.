@@ -56,9 +56,10 @@ const Register = () => {
           className="p-3 border flex flex-col gap-2 bg-secondary-50">
           <h2 className="text-xl">Inscription</h2>
           <label className="flex flex-col">
-            Pseudo:
+            Pseudo*:
             <input
               type="text"
+              placeholder='ex: XxJean34xX'
               onChange={e => setPseudo(e.target.value)}
               value={pseudo}
               className="border p-1 text-lg bg-white"
@@ -66,9 +67,10 @@ const Register = () => {
             />
           </label>
           <label className="flex flex-col">
-            Adresse email:
+            Adresse email*:
             <input
               type="email"
+              placeholder='ex: jhon.doe@email.com'
               onChange={e => setEmail(e.target.value)}
               value={email}
               className="border p-1 text-lg bg-white"
@@ -76,7 +78,7 @@ const Register = () => {
             />
           </label>
           <label className="flex flex-col">
-            Mot de passe:
+            Mot de passe*:
             <input
               type="password"
               onChange={e => setPassword(e.target.value)}
@@ -87,7 +89,7 @@ const Register = () => {
           </label>
           <label className="flex flex-col">
             <div className="flex gap-2">
-              <span>Confirmez le mot de passe:</span>
+              <span>Confirmez le mot de passe*:</span>
               {confirmPwd && (
                 <>
                   {confirmPwd !== password ? <span>❌</span> : <span>✅</span>}
@@ -103,7 +105,7 @@ const Register = () => {
             />
           </label>
           <label className="flex flex-col">
-            Avatar (jpeg ou png):
+          Avatar :<p className='text-sm'>{'(jpeg ou png, < 3 Mb)'}</p>
             <input
               type="file"
               accept=".jpg, .png"
@@ -111,7 +113,8 @@ const Register = () => {
               className="border p-1 bg-white"
             />
           </label>
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-2">
+            <p className='text-sm'>* champs requis</p>
             <Button>Créer mon compte</Button>
           </div>
         </form>
