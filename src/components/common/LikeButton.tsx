@@ -26,8 +26,7 @@ const LikeButton = ({ bottleId }: { bottleId: number }) => {
           body: JSON.stringify({ bottleId }),
         })
           .then(response => response.json())
-          .then(data => {
-            console.log(data);
+          .then(_data => {
             dispatch(deleteFavorite({ toDelete: bottleId }));
             setIsClicked(false);
           })
@@ -43,8 +42,7 @@ const LikeButton = ({ bottleId }: { bottleId: number }) => {
         body: JSON.stringify({ bottleId }),
       })
         .then(response => response.json())
-        .then(data => {
-          console.log(data);
+        .then(_data => {
           dispatch(setOneFavorite({ newFav: bottleId }));
           setIsClicked(false);
         })

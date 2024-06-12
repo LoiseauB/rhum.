@@ -31,7 +31,6 @@ const BottleShow = () => {
     fetch(`${import.meta.env.VITE_API_HOST}/bottle/${index}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         setBottle(data.bottle);
       })
       .catch(error => console.error(error));
@@ -57,7 +56,6 @@ const BottleShow = () => {
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
           navigate(0);
         })
         .catch(error => console.error(error));
@@ -75,8 +73,7 @@ const BottleShow = () => {
         body: JSON.stringify({ bottleId: index, rating: userRate }),
       })
         .then(response => response.json())
-        .then(data => {
-          console.log(data);
+        .then(_data => {
           navigate(0);
         })
         .catch(error => console.error(error));
@@ -95,8 +92,7 @@ const BottleShow = () => {
         body: JSON.stringify({ bottleId: index, comment: userComment }),
       })
         .then(response => response.json())
-        .then(data => {
-          console.log(data);
+        .then(_data => {
           navigate(0);
         })
         .catch(error => console.error(error));
@@ -106,7 +102,6 @@ const BottleShow = () => {
   const handleSubmitRate = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isAuthenticate) {
-      console.log(userRate);
       setRateSubmit(true);
       return;
     }
@@ -123,7 +118,6 @@ const BottleShow = () => {
   const handleComment = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isAuthenticate) {
-      console.log(userComment);
       setCommentSubmit(true);
       return;
     }

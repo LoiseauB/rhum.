@@ -33,7 +33,6 @@ const UserProfile = () => {
       })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
           setUser(data.user);
           setUserFavorites(data.userFavorites);
           const favIds: number[] = [];
@@ -53,8 +52,7 @@ const UserProfile = () => {
         credentials: 'include',
       })
         .then(response => response.json())
-        .then(data => {
-          console.log(data);
+        .then(_data => {
           dispatch(clearFavorites());
           dispatch(clearUser());
         })

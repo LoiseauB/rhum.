@@ -77,7 +77,6 @@ const AdminDashboard = () => {
         },
       );
       const result = await response.json();
-      console.log(result);
       alert('Utilisateur supprimé');
       navigate(0);
     } catch (error) {
@@ -102,7 +101,6 @@ const AdminDashboard = () => {
         },
       );
       const result = await response.json();
-      console.log(result);
       alert("Rôle de l'utilisateur modifié");
       navigate(0);
     } catch (error) {
@@ -128,7 +126,6 @@ const AdminDashboard = () => {
         },
       );
       const result = await response.json();
-      console.log(result);
       alert('Commentaire supprimé');
       navigate(0);
     } catch (error) {
