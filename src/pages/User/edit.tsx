@@ -1,11 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FormEvent, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
-import { useAppDispatch, useAppSelector } from '../../store/hook';
+import useTitle from '../../hooks/useTitle';
+import UseValidateFile from '../../hooks/useValidateFile';
 import { clearUser, setUser } from '../../store/features/authSlice';
 import { clearFavorites } from '../../store/features/favoriteSlice';
-import useTitle from '../../hooks/useTitle';
-import useValidateFile from '../../hooks/useValidateFile';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
 
 const EditUserForm = () => {
   useTitle('Modifier son compte');
@@ -25,7 +26,7 @@ const EditUserForm = () => {
     if (password && password !== confirmPwd) {
       return alert('Erreur dans la confirmation du mot de passe');
     }
-    if (useValidateFile(avatar)) {
+    if (UseValidateFile(avatar)) {
       setIsSubmit(true);
     }
   };
@@ -33,9 +34,13 @@ const EditUserForm = () => {
     if (isSubmit) {
       const formData = new FormData();
       formData.append('email', email);
-      password && formData.append('password', password);
+      if (password) {
+        formData.append('password', password);
+      }
       formData.append('pseudo', pseudo);
-      avatar && formData.append('avatar', avatar);
+      if (avatar) {
+        formData.append('avatar', avatar);
+      }
 
       fetch(`${import.meta.env.VITE_API_HOST}/user`, {
         method: 'PUT',

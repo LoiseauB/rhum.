@@ -26,7 +26,7 @@ const BottleCard = ({ index, name, country, category }: Props) => (
         className="text-nav text-primary">
         {name}
       </NavLink>
-      <p>Pays d'origine: {country}</p>
+      <p>Pays d&apos;origine: {country}</p>
       <p>Catégorie: {category}</p>
       <div className="flex w-full justify-end gap-2">
         <LikeButton bottleId={index} />

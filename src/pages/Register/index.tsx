@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button';
 import useTitle from '../../hooks/useTitle';
-import useValidateFile from '../../hooks/useValidateFile';
+import UseValidateFile from '../../hooks/useValidateFile';
 
 const Register = () => {
   useTitle("S'inscrire");
@@ -15,7 +15,7 @@ const Register = () => {
   const navigate = useNavigate();
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (useValidateFile(avatar)) {
+    if (UseValidateFile(avatar)) {
       setIsSubmit(true);
     }
   };
@@ -25,7 +25,9 @@ const Register = () => {
       formData.append('email', email);
       formData.append('password', password);
       formData.append('pseudo', pseudo);
-      avatar && formData.append('avatar', avatar);
+      if (avatar) {
+        formData.append('avatar', avatar);
+      }
     }
     if (isSubmit && password && password === confirmPwd) {
       fetch(`${import.meta.env.VITE_API_HOST}/register`, {
@@ -46,6 +48,7 @@ const Register = () => {
         .catch(error => console.error('Erreur:', error));
       setIsSubmit(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email, isSubmit, navigate, password, pseudo, avatar]);
 
   return (
@@ -59,7 +62,7 @@ const Register = () => {
             Pseudo*:
             <input
               type="text"
-              placeholder='ex: XxJean34xX'
+              placeholder="ex: XxJean34xX"
               onChange={e => setPseudo(e.target.value)}
               value={pseudo}
               className="border p-1 text-lg bg-white"
@@ -70,7 +73,7 @@ const Register = () => {
             Adresse email*:
             <input
               type="email"
-              placeholder='ex: jhon.doe@email.com'
+              placeholder="ex: jhon.doe@email.com"
               onChange={e => setEmail(e.target.value)}
               value={email}
               className="border p-1 text-lg bg-white"
@@ -105,7 +108,7 @@ const Register = () => {
             />
           </label>
           <label className="flex flex-col">
-          Avatar :<p className='text-sm'>{'(jpeg ou png, < 3 Mb)'}</p>
+            Avatar :<p className="text-sm">{'(jpeg ou png, < 3 Mb)'}</p>
             <input
               type="file"
               accept=".jpg, .png"
@@ -114,7 +117,7 @@ const Register = () => {
             />
           </label>
           <div className="flex justify-end gap-2">
-            <p className='text-sm'>* champs requis</p>
+            <p className="text-sm">* champs requis</p>
             <Button>Créer mon compte</Button>
           </div>
         </form>

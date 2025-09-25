@@ -1,3 +1,6 @@
+@use "mixin"
+@use "variables"
+
 .flex
   display: flex
   flex-direction: row
@@ -29,13 +32,13 @@
   &-3
     gap: 1.5rem
   &-4
-    @include responsive($md)
+    @include mixin.responsive(variables.$md)
       gap: 2rem
   &-5
     gap: 1.5rem
-    @include responsive($md)
+    @include mixin.responsive(variables.$md)
       gap: 4rem
 
 .inline
-  @include responsive($md)
+  @include mixin.responsive(variables.$md)
     display: inline-flex

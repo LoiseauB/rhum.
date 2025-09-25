@@ -1,7 +1,10 @@
+@use "../mixin"
+@use "../variables"
+
 .h
   &-hero
     min-height: 60vh
-    @include responsive($md)
+    @include mixin.responsive(variables.$md)
       min-height: 40vh
 .w
   &-home-text
@@ -9,17 +12,17 @@
 
 .icon
   &-home
-    fill: $accent
+    fill: variables.$accent
 
 .palm
   z-index: 0
   position: absolute
   width: auto
   max-height: 20rem 
-  @media (max-width: $md)
+  @media (max-width: variables.$md)
     right: -4rem
     top: -2rem
-  @include responsive($md)
+  @include mixin.responsive(variables.$md)
     left: 5vw
     bottom: 0
 
@@ -27,11 +30,11 @@
   z-index: 0
   position: absolute
   width: auto
-  @media (max-width: $md)
+  @media (max-width: variables.$md)
     left: -4vw
     scale: 0.75
     bottom: -4vh
-  @include responsive($md)
+  @include mixin.responsive(variables.$md)
     bottom: -1vh
     right: 10vw
 

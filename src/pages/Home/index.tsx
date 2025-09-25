@@ -4,7 +4,7 @@ import HomeHero from '../../components/Home/HomeHero';
 import useTitle from '../../hooks/useTitle';
 
 const HomePage = () => {
-  useTitle('Accueil')
+  useTitle('Accueil');
   return (
     <>
       <HomeHero />

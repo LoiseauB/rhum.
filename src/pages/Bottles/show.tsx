@@ -1,15 +1,15 @@
+import { Pencil, Star } from '@phosphor-icons/react';
 import { FormEvent, useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { Pencil, Star } from '@phosphor-icons/react';
 
 import Button from '../../components/common/Button';
-import Note from '../../components/Note';
-import { BottleType } from '../../types/bottles';
-import { categories } from '../../config/categories';
 import LikeButton from '../../components/common/LikeButton';
-import { useAppSelector } from '../../store/hook';
-import useTitle from '../../hooks/useTitle';
+import Note from '../../components/Note';
 import { bottlesPict } from '../../config/bottlesPict';
+import { categories } from '../../config/categories';
+import useTitle from '../../hooks/useTitle';
+import { useAppSelector } from '../../store/hook';
+import { BottleType } from '../../types/bottles';
 
 const BottleShow = () => {
   const { id } = useParams();
@@ -56,11 +56,12 @@ const BottleShow = () => {
         credentials: 'include',
       })
         .then(response => response.json())
-        .then(_data => {
+        .then(() => {
           navigate(0);
         })
         .catch(error => console.error(error));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticate, index, rateDelete]);
 
   useEffect(() => {
@@ -74,12 +75,13 @@ const BottleShow = () => {
         body: JSON.stringify({ bottleId: index, rating: userRate }),
       })
         .then(response => response.json())
-        .then(_data => {
+        .then(() => {
           navigate(0);
         })
         .catch(error => console.error(error));
       setRateSubmit(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticate, rateSubmit, userRate]);
 
   useEffect(() => {
@@ -93,11 +95,12 @@ const BottleShow = () => {
         body: JSON.stringify({ bottleId: index, comment: userComment }),
       })
         .then(response => response.json())
-        .then(_data => {
+        .then(() => {
           navigate(0);
         })
         .catch(error => console.error(error));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticate, userComment, commentSubmit]);
 
   const handleSubmitRate = (e: FormEvent<HTMLFormElement>) => {
@@ -144,7 +147,7 @@ const BottleShow = () => {
               <LikeButton bottleId={bottle.id} />
             </div>
             <p>
-              Pays d'origine: <strong>{bottle.country}</strong>
+              Pays d&apos;origine: <strong>{bottle.country}</strong>
             </p>
             <p>
               Catégorie: <strong>{categories[bottle.categoryId - 1]}</strong>

@@ -18,52 +18,53 @@ const Legals = () => {
       <p>
         <strong>Hébergeur :</strong> Éberge
         <br />
-        <strong>Adresse :</strong> 1 rue de l'hébergeur, 404200 Servertown
+        <strong>Adresse :</strong> 1 rue de l&apos;hébergeur, 404200 Servertown
         <br />
         <strong>Contact :</strong> contact@hebergeur.com
       </p>
 
       <h2 className="text-lg m-b-2 my-4">Propriété Intellectuelle</h2>
       <p>
-        Le contenu de ce site, incluant, sans s'y limiter, les textes, images,
-        et vidéos, est la propriété exclusive de Rhum.  ou de ses
+        Le contenu de ce site, incluant, sans s&apos;y limiter, les textes,
+        images, et vidéos, est la propriété exclusive de Rhum. ou de ses
         partenaires et est protégé par les lois françaises et internationales
         relatives à la propriété intellectuelle. Toute reproduction,
         distribution, modification, adaptation, retransmission ou publication,
         même partielle, de ces différents éléments est strictement interdite
-        sans l'accord écrit de Rhum. .
+        sans l&apos;accord écrit de Rhum. .
       </p>
 
       <h2 className="text-lg m-b-2 my-4">Limitation de responsabilité</h2>
       <p>
-        Rhum.  ne pourra être tenu responsable des dommages directs
-        et indirects causés au matériel de l’utilisateur, lors de l’accès au
-        site www.votresite.com, et résultant soit de l’utilisation d’un matériel
-        ne répondant pas aux spécifications indiquées au point précédent, soit
-        de l’apparition d’un bug ou d’une incompatibilité.
+        Rhum. ne pourra être tenu responsable des dommages directs et indirects
+        causés au matériel de l’utilisateur, lors de l’accès au site
+        www.votresite.com, et résultant soit de l’utilisation d’un matériel ne
+        répondant pas aux spécifications indiquées au point précédent, soit de
+        l’apparition d’un bug ou d’une incompatibilité.
       </p>
       <p>
-        Rhum.  ne pourra également être tenu responsable des
-        dommages indirects consécutifs à l’utilisation du site
-        www.votresite.com.
+        Rhum. ne pourra également être tenu responsable des dommages indirects
+        consécutifs à l’utilisation du site www.votresite.com.
       </p>
 
-      <h2 className="text-lg m-b-2 my-4">Protection des données personnelles</h2>
+      <h2 className="text-lg m-b-2 my-4">
+        Protection des données personnelles
+      </h2>
       <p>
-        En tant qu'utilisateur du site, vous avez le droit de consulter, de
+        En tant qu&apos;utilisateur du site, vous avez le droit de consulter, de
         modifier ou de supprimer les informations personnelles que nous pouvons
-        recueillir. Pour exercer ces droits, veuillez nous contacter à l'adresse
-        suivante : bapt.loiseau@gmail.com.
+        recueillir. Pour exercer ces droits, veuillez nous contacter à
+        l&apos;adresse suivante : bapt.loiseau@gmail.com.
       </p>
 
       <h2 className="text-lg m-b-2 my-4">Cookies</h2>
       <p>
-        Le site www.votresite.com peut-être amené à vous demander l’acceptation
-        des cookies pour des besoins de statistiques et d’affichage. Un cookie
-        est une information déposée sur votre disque dur par le serveur du site
-        que vous visitez. Il contient plusieurs données qui sont stockées sur
-        votre ordinateur dans un simple fichier texte auquel un serveur accède
-        pour lire et enregistrer des informations.
+        Le site www.votresite.com peut-être amené à vous demander
+        l&apos;acceptation des cookies pour des besoins de statistiques et
+        d’affichage. Un cookie est une information déposée sur votre disque dur
+        par le serveur du site que vous visitez. Il contient plusieurs données
+        qui sont stockées sur votre ordinateur dans un simple fichier texte
+        auquel un serveur accède pour lire et enregistrer des informations.
       </p>
 
       <h2 className="text-lg m-b-2 my-4">Loi applicable</h2>

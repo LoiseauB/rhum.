@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
 import { CaretDown, CaretUp } from '@phosphor-icons/react';
 import classNames from 'classnames';
+import { useEffect, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../store/hook';
-import Button from '../common/Button';
 import { clearUser } from '../../store/features/authSlice';
 import { clearFavorites } from '../../store/features/favoriteSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
+import Button from '../common/Button';
 
 const Header = () => {
   const { isAuthenticate, role } = useAppSelector(state => state.auth);
@@ -29,6 +29,7 @@ const Header = () => {
         navigate('/');
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticate, isLogout]);
   return (
     <header className="flex justify-between items-center bg-white">
@@ -54,23 +55,34 @@ const Header = () => {
                 { 'visible-none': !isOpen },
                 'absolute -bottom-5 bg-white box-shadow border',
               )}>
-              <nav
-                onClick={() => setIsOpen(false)}
-                className="flex flex-col px-4 py-1">
-                <NavLink to="/" className="text-nav">
+              <nav className="flex flex-col px-4 py-1">
+                <NavLink
+                  onClick={() => setIsOpen(false)}
+                  to="/"
+                  className="text-nav">
                   Accueil
                 </NavLink>
                 <br />
-                <NavLink to="/bottles" className="text-nav">
+                <NavLink
+                  onClick={() => setIsOpen(false)}
+                  to="/bottles"
+                  className="text-nav">
                   Les bouteilles
                 </NavLink>
                 <br />
                 {isAuthenticate ? (
-                  <button onClick={() => setIsLogout(true)}>
+                  <button
+                    onClick={() => {
+                      setIsLogout(true);
+                      setIsOpen(false);
+                    }}>
                     Se déconnecter
                   </button>
                 ) : (
-                  <NavLink to="/login" className="text-nav">
+                  <NavLink
+                    onClick={() => setIsOpen(false)}
+                    to="/login"
+                    className="text-nav">
                     Se connecter
                   </NavLink>
                 )}
@@ -87,7 +99,7 @@ const Header = () => {
             </>
           ) : (
             <Button asNavLink href="/register">
-              S'inscrire
+              S&apos;inscrire
             </Button>
           )}
         </div>
@@ -111,7 +123,7 @@ const Header = () => {
               Se connecter
             </NavLink>
             <Button asNavLink href="/register">
-              S'inscrire
+              S&apos;inscrire
             </Button>
           </>
         )}

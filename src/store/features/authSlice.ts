@@ -1,4 +1,3 @@
-/* eslint-disable import/named */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export type AuthStateType = {
   userId: number | null;
@@ -37,9 +36,9 @@ const authSlice = createSlice({
     clearUser(state) {
       state.userId = null;
       state.isAuthenticate = false;
-      state.pseudo= null;
+      state.pseudo = null;
       state.email = null;
-      state.role = 'USER'
+      state.role = 'USER';
     },
   },
 });

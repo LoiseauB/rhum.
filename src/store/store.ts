@@ -18,7 +18,8 @@ const store = configureStore({
     auth: authReducer,
     favorites: favoritesReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}),
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 export const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../store/hook';
-import { useEffect, useState } from 'react';
 import { Heart } from '@phosphor-icons/react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   deleteFavorite,
   setOneFavorite,
 } from '../../store/features/favoriteSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
 
 const LikeButton = ({ bottleId }: { bottleId: number }) => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const LikeButton = ({ bottleId }: { bottleId: number }) => {
           body: JSON.stringify({ bottleId }),
         })
           .then(response => response.json())
-          .then(_data => {
+          .then(() => {
             dispatch(deleteFavorite({ toDelete: bottleId }));
             setIsClicked(false);
           })
@@ -42,12 +42,13 @@ const LikeButton = ({ bottleId }: { bottleId: number }) => {
         body: JSON.stringify({ bottleId }),
       })
         .then(response => response.json())
-        .then(_data => {
+        .then(() => {
           dispatch(setOneFavorite({ newFav: bottleId }));
           setIsClicked(false);
         })
         .catch(error => console.error(error));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isClicked]);
   return (
     <button

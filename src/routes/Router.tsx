@@ -39,7 +39,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/register',
-        element: <Register />
+        element: <Register />,
       },
       {
         path: '/profile',
@@ -53,20 +53,20 @@ const router = createBrowserRouter([
       },
       {
         path: '/admin',
-        element: <AdminDashboard/>,
-        errorElement: <Error />
+        element: <AdminDashboard />,
+        errorElement: <Error />,
       },
       {
         path: '/legals',
-        element: <Legals />
+        element: <Legals />,
       },
       {
         path: '/contact',
-        element: <Contact />
+        element: <Contact />,
       },
       {
         path: '/plan',
-        element: <SitePlan />
+        element: <SitePlan />,
       },
     ],
   },

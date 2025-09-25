@@ -1,3 +1,6 @@
+@use "../mixin"
+@use "../variables"
+
 .size
   &-bottle
     height: 200px
@@ -5,7 +8,7 @@
     &-text
       height: auto
       width: 100%
-      @include responsive($md)
+      @include mixin.responsive(variables.$md)
         width: 74%
     &-img
       min-width: 100%
@@ -14,11 +17,11 @@
       object-position: center
 
 .favorite
-  fill: $text
-  stroke: $text
+  fill: variables.$text
+  stroke: variables.$text
   &:hover
-    fill: $text
+    fill: variables.$text
   &:active
-    fill: $accent
-    stroke: $accent
+    fill: variables.$accent
+    stroke: variables.$accent
     scale: 1.3

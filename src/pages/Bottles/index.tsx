@@ -23,7 +23,7 @@ export const CategoryContext = createContext<CategoryContextType>({
   setter: () => {},
 });
 const Bottles = () => {
-  useTitle('Les Bouteilles')
+  useTitle('Les Bouteilles');
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState<number | null>(null);
   const [bottles, setBottles] = useState<BottleType[]>();
@@ -32,7 +32,7 @@ const Bottles = () => {
       .then(response => response.json())
       .then(data => setBottles(data.bottles))
       .catch(error => console.error(error));
-  },[]);
+  }, []);
   return (
     <>
       <SearchContext.Provider value={setSearch}>
@@ -45,8 +45,9 @@ const Bottles = () => {
                   .filter(({ name }) =>
                     name.toLowerCase().includes(search.toLowerCase()),
                   )
-                  .filter(({ categoryId }) =>
-                    categoryId === (category ? category : categoryId),
+                  .filter(
+                    ({ categoryId }) =>
+                      categoryId === (category ? category : categoryId),
                   )
                   .map(({ id, name, country, categoryId }) => (
                     <>

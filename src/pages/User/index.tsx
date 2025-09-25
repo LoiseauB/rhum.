@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -52,7 +53,7 @@ const UserProfile = () => {
         credentials: 'include',
       })
         .then(response => response.json())
-        .then(_data => {
+        .then(() => {
           dispatch(clearFavorites());
           dispatch(clearUser());
         })

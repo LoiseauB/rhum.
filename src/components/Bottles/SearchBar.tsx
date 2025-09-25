@@ -1,5 +1,5 @@
-import { useContext } from 'react';
 import { MagnifyingGlass, X } from '@phosphor-icons/react';
+import { useContext } from 'react';
 
 import { CategoryContext, SearchContext } from '../../pages/Bottles';
 
@@ -31,7 +31,9 @@ const SearchBar = () => {
           {!category ? (
             <>
               {categories.map((cat, index) => (
-                <Button onClick={() => setter(index + 1)}>{cat}</Button>
+                <Button key={'add' + cat} onClick={() => setter(index + 1)}>
+                  {cat}
+                </Button>
               ))}
             </>
           ) : (
@@ -39,7 +41,9 @@ const SearchBar = () => {
               {categories
                 .filter((_, id) => id === category - 1)
                 .map(cat => (
-                  <Button onClick={() => setter(null)}>{cat} <X /></Button>
+                  <Button key={'del' + cat} onClick={() => setter(null)}>
+                    {cat} <X />
+                  </Button>
                 ))}
             </>
           )}

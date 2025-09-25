@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FormEvent, useEffect, useState } from 'react';
-import useValidateFile from '../../hooks/useValidateFile';
-import Button from '../../components/common/Button';
-import { userType } from '../../types/user';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../components/common/Button';
+import UseValidateFile from '../../hooks/useValidateFile';
+import { userType } from '../../types/user';
 
 const EditAdminModal = ({
   user,
@@ -23,7 +24,7 @@ const EditAdminModal = ({
     if (password && password !== confirmPwd) {
       return alert('Erreur dans la confirmation du mot de passe');
     }
-    if (useValidateFile(avatar)) {
+    if (UseValidateFile(avatar)) {
       setIsSubmit(true);
     }
   };
@@ -31,9 +32,13 @@ const EditAdminModal = ({
     if (isSubmit) {
       const formData = new FormData();
       formData.append('email', email);
-      password && formData.append('password', password);
+      if (password) {
+        formData.append('password', password);
+      }
       formData.append('pseudo', pseudo);
-      avatar && formData.append('avatar', avatar);
+      if (avatar) {
+        formData.append('avatar', avatar);
+      }
       formData.append('userId', user.id.toString());
 
       fetch(`${import.meta.env.VITE_API_HOST}/admin/users`, {
@@ -48,7 +53,7 @@ const EditAdminModal = ({
             alert(data.error);
           } else {
             onClose();
-            alert('Le user a été modifier avec succès')
+            alert('Le user a été modifier avec succès');
             navigate(0);
           }
         })

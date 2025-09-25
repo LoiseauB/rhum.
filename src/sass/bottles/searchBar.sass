@@ -1,25 +1,28 @@
+@use "../mixin"
+@use "../variables"
+
 .search
   &-border
-    border: 2px solid $primary
+    border: 2px solid variables.$primary
   &-size
     position: relative
     height: fit-content
-    @include responsive($md)
+    @include mixin.responsive(variables.$md)
       width: 45%
   &-icon
-    fill: $accent
+    fill: variables.$accent
   &-input
     height: 50px
-    @include responsive($md)
+    @include mixin.responsive(variables.$md)
       width: 90%
   &-palm
     transform: scaleX(-1)
     position: absolute
     width: auto
     max-height: 15rem
-    @media (max-width: $md)
+    @media (max-width: variables.$md)
       left: -4rem
       bottom: -2rem
-    @include responsive($md)
+    @include mixin.responsive(variables.$md)
       right: 5vw
       bottom: 0

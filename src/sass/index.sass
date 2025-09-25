@@ -1,27 +1,27 @@
-@import 'minireset.sass'
-@import 'variables.sass'
-@import 'mixin.sass'
-@import 'text.sass'
-@import 'flex.sass'
-@import 'contact.sass'
-@import 'home/home.sass'
-@import 'common/button.sass'
-@import 'layout/header.sass'
-@import 'bottles/bottleCard.sass'
-@import 'bottles/searchBar.sass'
-@import 'bottles/show.sass'
+@use 'minireset.sass'
+@use 'variables.sass'
+@use 'mixin.sass'
+@use 'text.sass'
+@use 'flex.sass'
+@use 'contact.sass'
+@use 'home/home.sass'
+@use 'common/button.sass'
+@use 'layout/header.sass'
+@use 'bottles/bottleCard.sass'
+@use 'bottles/searchBar.sass'
+@use 'bottles/show.sass'
 body
   font-size: 16px
   font-family: 'Poppins', sans-serif
   font-weight: 400
-  background-color: $background
+  background-color: variables.$background
 
 main
   min-height: 100vh
   padding-top: 4.5rem
   padding-left: 2rem
   padding-right: 2rem
-  @include responsive($md)
+  @include mixin.responsive(variables.$md)
     padding-top: 7rem
     padding-left: 4rem
     padding-right: 4rem
@@ -31,37 +31,37 @@ button
 
 .bg
   &-primary
-    background-color: $primary
+    background-color: variables.$primary
     &-15
-      background-color: rgba($primary, 0.15)
+      background-color: rgba(variables.$primary, 0.15)
     &-30
-      background-color: rgba($primary, 0.30)
+      background-color: rgba(variables.$primary, 0.30)
     &-50
-      background-color: rgba($primary, 0.50)
+      background-color: rgba(variables.$primary, 0.50)
     &-65
-      background-color: rgba($primary, 0.65)
+      background-color: rgba(variables.$primary, 0.65)
     &-80
-      background-color: rgba($primary, 0.80)
+      background-color: rgba(variables.$primary, 0.80)
     &-95
-      background-color: rgba($primary, 0.95)
+      background-color: rgba(variables.$primary, 0.95)
   &-secondary
-    background-color: $secondary
+    background-color: variables.$secondary
     &-15
-      background-color: rgba($secondary, 0.15)
+      background-color: rgba(variables.$secondary, 0.15)
     &-30
-      background-color: rgba($secondary, 0.30)
+      background-color: rgba(variables.$secondary, 0.30)
     &-50
-      background-color: rgba($secondary, 0.50)
+      background-color: rgba(variables.$secondary, 0.50)
     &-65
-      background-color: rgba($secondary, 0.65)
+      background-color: rgba(variables.$secondary, 0.65)
     &-80
-      background-color: rgba($secondary, 0.80)
+      background-color: rgba(variables.$secondary, 0.80)
     &-95
-      background-color: rgba($secondary, 0.95)
+      background-color: rgba(variables.$secondary, 0.95)
   &-white
-    background-color: $background
+    background-color: variables.$background
     &-80
-      background-color: rgba($background, 0.80)
+      background-color: rgba(variables.$background, 0.80)
 .h
   &-0
     height: 0
@@ -167,7 +167,7 @@ button
     padding: 1.5rem
   &-10
     padding: 2.5rem
-    @include responsive($md )
+    @include mixin.responsive(variables.$md )
       padding: 5rem
   &y
     &-1
@@ -216,16 +216,16 @@ button
   &-mobile
     &-flex
       display: flex
-      @include responsive($md)
+      @include mixin.responsive(variables.$md)
         display: none
     &-block
       display: block
-      @include responsive($md)
+      @include mixin.responsive(variables.$md)
         display: none
   &-desktop
     &-flex
       display: none
-      @include responsive($md)
+      @include mixin.responsive(variables.$md)
         display: flex
   &-table
     display: table
@@ -235,7 +235,7 @@ button
     overflow: hidden
 
 .border
-  border: 1px solid $secondary
+  border: 1px solid variables.$secondary
   border-radius: 0.81rem
 
 .rounded

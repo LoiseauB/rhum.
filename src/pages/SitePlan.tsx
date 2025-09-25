@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 const SitePlan = () => {
   return (
     <>
-      <h1 className='text-xl m-b-2'>Plan du site</h1>
+      <h1 className="text-xl m-b-2">Plan du site</h1>
       <ul>
         <li>
           <NavLink to="/">Accueil</NavLink>

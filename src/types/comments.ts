@@ -3,4 +3,4 @@ export type CommentType = {
   comment: string;
   userId: number;
   bottleId: number;
-}
+};

@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import Button from '../../components/common/Button';
+import useTitle from '../../hooks/useTitle';
 import { setUser } from '../../store/features/authSlice';
 import { useAppSelector } from '../../store/hook';
-import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
   useTitle('Se connecter');
@@ -58,6 +58,7 @@ const Login = () => {
     if (isAuthenticate) {
       navigate('/profile');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticate]);
 
   return (
@@ -92,9 +93,9 @@ const Login = () => {
           </div>
         </form>
         <p className="m-t-4">
-          Vous n'avez pas de compte :{' '}
+          Vous n&apos;avez pas de compte :{' '}
           <NavLink to={'/register'} className="text-nav text-md text-primary">
-            s'inscrire
+            s&apos;inscrire
           </NavLink>
         </p>
       </div>
